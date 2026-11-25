@@ -174,20 +174,29 @@ body.gating #lang{right:16px}
 .bio .facts dd{margin:2px 0 0;font:500 12.5px/1.3 "Zen Old Mincho",serif;letter-spacing:0;text-transform:none;color:var(--ink0)}
 @container (max-height:700px){.bio .body{display:none}}
 
-/* 02 this pair */
+/* 02 this pair: a cutting map of one bolt */
 .pair{background:var(--paper2)}
-.pair .seven{left:-4cqw;top:2cqh;font:600 min(118cqw,64cqh)/.8 "Bodoni Moda",serif;font-optical-sizing:none;font-variation-settings:"opsz" 28;color:var(--red);letter-spacing:-.04em;z-index:1}
-.pair .of{left:52cqw;top:calc(2cqh + min(52cqw,28cqh));font:500 min(46px,6cqh)/1 "Bodoni Moda",serif;z-index:2}
-.pair .ed{right:30px;top:calc(96px + env(safe-area-inset-top));text-align:right}
-.pair .eye{right:-14cqw;bottom:-5cqh;width:min(62cqw,32cqh);aspect-ratio:1;border-radius:50%;overflow:hidden;z-index:2;box-shadow:0 0 0 2px var(--red),0 0 0 9px var(--paper2),0 0 0 10px var(--red)}
-.pair .eye img{position:absolute;width:230%;height:230%;max-width:none;left:-6%;top:-118%;object-fit:cover}
-.pair .ledger{left:20px;bottom:calc(4cqh + env(safe-area-inset-bottom));width:46cqw;z-index:3}
+.pair .bolt{left:20px;top:calc(9cqh + env(safe-area-inset-top));bottom:calc(4cqh + env(safe-area-inset-bottom));width:min(24cqw,120px);display:flex;flex-direction:column;background:url(img/bolt.webp) 50% 50%/cover;box-shadow:0 18px 30px rgba(0,0,0,.18)}
+.pair .bolt::before{content:"";position:absolute;inset:0;background:rgba(228,216,194,.08)}
+.pair .c{flex:1;position:relative;border-bottom:1px dashed rgba(239,231,216,.85)}
+.pair .c:last-of-type{border-bottom:0}
+.pair .c span{position:absolute;left:4px;top:50%;transform:translateY(-50%);font:500 9px/1 "Zen Kaku Gothic New",sans-serif;letter-spacing:.06em;color:var(--paper);background:rgba(22,20,15,.45);padding:2px 3px}
+.pair .c.me{outline:3px solid var(--red);outline-offset:-1px;z-index:2;background:rgba(196,58,44,.18)}
+.pair .c.me span{background:var(--red);font-size:11px;font-weight:700}
+.pair .tag{position:absolute;right:4px;top:calc((100% / 17) * 6.5);transform:translateY(-50%);white-space:nowrap;color:var(--paper);background:var(--red);font-weight:700;font-size:9px;padding:2px 4px;z-index:3}
+.pair .txt{left:calc(20px + min(24cqw,120px) + 20px);right:32px;top:calc(9cqh + env(safe-area-inset-top) + min(4cqh,30px));display:flex;flex-direction:column}
+.pair .ed{margin-top:calc(100cqh / 17 * 1.6)}
+.pair .hl{font:500 min(30px,4.4cqh)/1.1 "Bodoni Moda","Zen Old Mincho",serif;margin:min(10px,1.4cqh) 0 min(12px,1.6cqh);text-wrap:balance}
+:lang(ja) .pair .hl{font:700 min(22px,3.4cqh)/1.45 "Zen Old Mincho",serif}
+.pair .ledger{margin-top:min(14px,2cqh)}
 .pair .ledger div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid rgba(22,20,15,.3);padding:5px 0}
 .pair .ledger b{font:500 13px/1.5 "Zen Old Mincho",serif;text-transform:none;letter-spacing:0;color:var(--ink0);text-align:right}
-.pair .hm{left:20px;top:calc(2cqh + min(94cqw,51cqh));width:54cqw;z-index:3}
-.pair .hm i{display:block;font:italic 500 min(26px,3.6cqh)/1.1 "Bodoni Moda","Zen Old Mincho",serif;margin-bottom:6px}
-:lang(ja) .pair .hm i{font:700 min(20px,3cqh)/1.2 "Zen Old Mincho",serif}
+.pair .mark{right:20px;bottom:calc(4cqh + env(safe-area-inset-bottom));display:flex;align-items:center;gap:10px;left:calc(20px + min(24cqw,120px) + 20px)}
+.pair .eye{flex:none;width:min(22cqw,13cqh);aspect-ratio:1;border-radius:50%;overflow:hidden;position:relative;box-shadow:0 0 0 2px var(--red),0 0 0 6px var(--paper2),0 0 0 7px var(--red)}
+.pair .eye img{position:absolute;width:230%;height:230%;max-width:none;left:-6%;top:-118%;object-fit:cover}
+.pair .mark .t{text-transform:none;letter-spacing:.02em;font-size:11px;color:rgba(22,20,15,.7)}
 .sample{margin-top:8px;font:400 10px/1.5 "Zen Kaku Gothic New",sans-serif;color:rgba(22,20,15,.5);letter-spacing:.04em;text-transform:none}
+@container (max-height:620px){.pair .sample{display:none}.pair .ed{margin-top:4px}}
 
 /* 02 kiku */
 .kiku .g{right:-30cqw;top:-2cqh;--fs:min(140cqw,72cqh);z-index:1}
@@ -295,20 +304,22 @@ html.js .rv{opacity:0}
   <dl class="facts t rv"><div><dt data-t="fFounded"></dt><dd data-t="fFoundedV"></dd></div><div><dt data-t="fDyes"></dt><dd data-t="fDyesV"></dd></div><div><dt data-t="fColour"></dt><dd data-t="fColourV"></dd></div></dl>
 </section>
 
-<!-- 02 this pair -->
+<!-- 02 this pair: the seventh cut from one bolt -->
 <section class="pg pair paper" data-pg="02" aria-label="This pair">
-  <div class="seven" aria-hidden="true" data-par=".08">7</div>
-  <div class="of rv" aria-hidden="true">/ 17</div>
+  <div class="bolt" aria-hidden="true"><i class="c"><span>01</span></i><i class="c"><span>02</span></i><i class="c"><span>03</span></i><i class="c"><span>04</span></i><i class="c"><span>05</span></i><i class="c"><span>06</span></i><i class="c me"><span>07</span></i><i class="c"><span>08</span></i><i class="c"><span>09</span></i><i class="c"><span>10</span></i><i class="c"><span>11</span></i><i class="c"><span>12</span></i><i class="c"><span>13</span></i><i class="c"><span>14</span></i><i class="c"><span>15</span></i><i class="c"><span>16</span></i><i class="c"><span>17</span></i><b class="tag t" data-t="yours"></b></div>
   <p class="num t rv">02</p>
-  <p class="ed t rv" data-t="pairEd"></p>
-  <div class="hm rv"><i data-t="handMark"></i><p class="p" data-t="handMarkP"></p></div>
-  <div class="eye rv"><img src="img/closeup.webp" loading="lazy" decoding="async" alt=""></div>
-  <div class="ledger t rv">
-    <div><span data-t="edition"></span><b data-t="editionV"></b></div>
-    <div><span data-t="finished"></span><b data-t="finishedShort"></b></div>
-    <div><span data-t="technique"></span><b class="jp">型友禅</b></div>
-    <p class="sample" data-t="sample"></p>
+  <div class="txt">
+    <p class="ed t rv" data-t="pairEd"></p>
+    <h2 class="hl rv" data-t="boltH"></h2>
+    <p class="p rv" data-t="boltP"></p>
+    <div class="ledger t rv">
+      <div><span data-t="dyed"></span><b data-t="finishedShort"></b></div>
+      <div><span data-t="fromBolt"></span><b data-t="fromBoltV"></b></div>
+      <div><span data-t="yourCut"></span><b data-t="yourCutV"></b></div>
+    </div>
+    <p class="sample rv" data-t="sample"></p>
   </div>
+  <div class="mark rv"><div class="eye"><img src="img/closeup.webp" loading="lazy" decoding="async" alt=""></div><p class="t" data-t="handMarkS"></p></div>
 </section>
 
 <!-- 02 kiku -->
@@ -370,17 +381,18 @@ html.js .rv{opacity:0}
 /* ---------- words, in two languages ---------- */
 const T={
 en:{
+ boltH:"The seventh cut from one bolt of cloth.",boltP:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. It gave seventeen pairs of straps, and no more will be cut from it. Yours was the seventh.",yours:"Yours",dyed:"Dyed",fromBolt:"From this bolt",fromBoltV:"17 pairs",yourCut:"Your cut",yourCutV:"The 7th",handMarkS:"<b>The hand mark.</b> A fleck of brighter indigo where the strap folds at the toe. A machine would not leave it.",
  bioNum:"The workshop",bioSub:"Kata-yuzen kimono dyers in Kyoto, for more than a century",bioQuote:"“For this one, we tried dyeing it in deep blue and light blue to suit the texture and feel of the pattern.”",bioCite:"Iwai Senkou, on this strap",bioBody:"Known for komon, small repeating patterns, and for delicate designs. They still dye with the techniques handed down since their founding. Many of their patterns are simple, and they see that simplicity as their strength.",fFounded:"Founded",fFoundedV:"Early Meiji era",fDyes:"They dye",fDyesV:"Kimono and obi",fColour:"Colour",fColourV:"Mixed by hand",
  gTitle:"Is this pair <i>yours?</i>",gHint:"Tap the stamp to turn it over.",mine:"It's mine",gift:"It's a gift",show:"Show me how it was made",
  keeperTitle:"Become its <i>keeper</i>",keeperNote:"Your name and country go on the entry stamp, like a passport.",name:"Name",country:"Country",choose:"Choose",stampIt:"Stamp it",back:"Back",
- welcome:"Welcome, <i>{n}</i>",welcomeSub:"Kyoto to {c}. Pair 7 of 17 is yours.",
+ welcome:"Welcome, <i>{n}</i>",welcomeSub:"Kyoto to {c}. The seventh pair cut from this bolt is yours.",
  giftTitle:"A letter <i>inside</i>",giftNote:"The first thing they see when they tap the pair.",forL:"For",theirName:"Their name",message:"Message",writePH:"Write it as you would on paper",fromL:"From",yourName:"Your name",seal:"Seal and stamp it",
  sealedFor:"Sealed for <i>{to}</i>",sealedNote:"When they tap the pair, your letter opens first. Once opened, it can't be changed.",envFor:"For {to}",
  letterWaiting:"A letter is waiting. Tap to open.",letterFrom:"from {f}",receive:"Receive it",lookFirst:"Show me how it was made first",receiveTitle:"Receive it as <i>its keeper</i>",
- welcomeBack:"Welcome back, <i>{n}</i>",welcomeBackSub:"Pair 7 of 17 · kept since {d}",
- thisPair:"This pair",authentic:"Authentic piece",edition:"Edition",editionV:"7 of 17",finished:"Finished",finishedLong:"18 November 2026",finishedShort:"18 Nov 2026",dyedAt:"Dyed at",dyedAtV:"岩井染工, Kyoto",technique:"Technique",handMarkL:"Hand mark",handMarkV:"Toe fold, left",keeper:"Keeper",unclaimed:"Unclaimed",token:"Token",tokenV:"To be issued",backNote:"Sample record until this exact pair is logged.",tapFlip:"Tap the stamp to turn it over",close:"Close",
- filmNum:"How it was made",mute:"Mute",sound:"Sound",replay:"Replay",endc:"Pair 7 of 17 · finished 18 XI 2026",
- pairEd:"This pair<br>and no other",handMark:"The hand mark",handMarkP:"Where the strap folds at the toe, a fleck of brighter indigo shows through. A machine would not leave it.",sample:"Sample data until this exact pair is recorded.",
+ welcomeBack:"Welcome back, <i>{n}</i>",welcomeBackSub:"The seventh pair from its bolt · kept since {d}",
+ thisPair:"This pair",authentic:"Authentic piece",edition:"Cut",editionV:"7th of 17, one bolt",finished:"Finished",finishedLong:"18 November 2026",finishedShort:"18 Nov 2026",dyedAt:"Dyed at",dyedAtV:"岩井染工, Kyoto",technique:"Technique",handMarkL:"Hand mark",handMarkV:"Toe fold, left",keeper:"Keeper",unclaimed:"Unclaimed",token:"Token",tokenV:"To be issued",backNote:"Sample record until this exact pair is logged.",tapFlip:"Tap the stamp to turn it over",close:"Close",
+ filmNum:"How it was made",mute:"Mute",sound:"Sound",replay:"Replay",endc:"Cut seventh from its bolt · dyed 18 XI 2026",
+ pairEd:"This pair<br>and no other",handMark:"The hand mark",handMarkP:"Where the strap folds at the toe, a fleck of brighter indigo shows through. A machine would not leave it.",sample:"Sample data until Iwai Senkou records this bolt.",
  pattern:"The pattern",kikuT:"Kiku · Karakusa",kikuP:"Chrysanthemum and arabesque vine, both long held as good omens, joined in one pattern: a wish for long life, and for things to keep growing.",
  stencil:"The stencil",stencilP:"A pattern carved into washi paper coated with persimmon tannin, laid on the cloth, and the colour pressed through with a spatula.",workshop:"工房 · The workshop",
  colour:"The colour",colourP:"Matched by the craftsman's own sense, deciding how much dye to add as he goes.",
@@ -394,17 +406,18 @@ en:{
  demoMsg:"I walked past this shop in Kyoto and thought of you.\nSomeone dyed this by hand, one board at a time.\nWear it everywhere."
 },
 ja:{
+ boltH:"一反の布から、七番目に裁たれた鼻緒。",boltP:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから生まれた鼻緒は十七足分。この反から、これ以上は生まれません。あなたの一足は、七番目に裁たれたものです。",yours:"あなたの一足",dyed:"染め上がり",fromBolt:"この反から",fromBoltV:"十七足分",yourCut:"あなたの一足",yourCutV:"七番目",handMarkS:"<b>手の跡。</b>つま先の折り返しにのぞく、明るい藍。機械では生まれない跡です。",
  bioNum:"工房",bioSub:"明治初期から百年以上、型友禅で着物を染めてきた京都の老舗",bioQuote:"「今回、柄の風合いから濃いブルーと淡いブルーで染めてみました。」",bioCite:"岩井染工、この鼻緒について",bioBody:"得意なのは小紋柄で、紋様の繊細さが特徴です。創業当時からの技術を受け継ぎ、変わらない染め方で着物を染めています。柄はシンプルなものが多く、岩井染工はそれを強みにしています。",fFounded:"創業",fFoundedV:"明治初期",fDyes:"染めるもの",fDyesV:"着物と帯",fColour:"色合わせ",fColourV:"職人の手合わせ",
  gTitle:"この一足は、<i>あなたのものですか?</i>",gHint:"切手をタップすると、裏返ります。",mine:"自分のものです",gift:"贈りものです",show:"できるまでを見る",
  keeperTitle:"この一足の<i>持ち主</i>に",keeperNote:"お名前と国が、パスポートのように入国スタンプに押されます。",name:"お名前",country:"国",choose:"選択してください",stampIt:"スタンプを押す",back:"戻る",
- welcome:"ようこそ、<i>{n}</i>さん",welcomeSub:"京都から{c}へ。17足のうち7足目は、あなたのものです。",
+ welcome:"ようこそ、<i>{n}</i>さん",welcomeSub:"京都から{c}へ。この反から七番目に裁たれた一足は、あなたのものです。",
  giftTitle:"なかに<i>手紙</i>を",giftNote:"相手が靴をタップすると、最初にこの手紙が開きます。",forL:"宛名",theirName:"相手のお名前",message:"メッセージ",writePH:"紙に書くように、どうぞ",fromL:"差出人",yourName:"あなたのお名前",seal:"封をして、スタンプを押す",
  sealedFor:"<i>{to}</i>さんへ、封をしました",sealedNote:"靴をタップすると、まずこの手紙が開きます。一度開くと、書き換えはできません。",envFor:"{to}さんへ",
  letterWaiting:"手紙が届いています。タップして開いてください。",letterFrom:"{f}より",receive:"受け取る",lookFirst:"先に、できるまでを見る",receiveTitle:"<i>持ち主</i>として受け取る",
- welcomeBack:"おかえりなさい、<i>{n}</i>さん",welcomeBackSub:"17足のうち7足目 · {d}から",
- thisPair:"この一足",authentic:"正規品",edition:"限定番号",editionV:"17足中7足目",finished:"仕上がり",finishedLong:"2026年11月18日",finishedShort:"2026.11.18",dyedAt:"染め",dyedAtV:"京都・岩井染工",technique:"技法",handMarkL:"手の跡",handMarkV:"左・つま先の折り返し",keeper:"持ち主",unclaimed:"まだいません",token:"トークン",tokenV:"発行予定",backNote:"この一足の記録が登録されるまでの見本です。",tapFlip:"切手をタップすると、裏返ります",close:"閉じる",
- filmNum:"できるまで",mute:"消音",sound:"音を出す",replay:"もう一度",endc:"17足中7足目 · 2026年11月18日 仕上げ",
- pairEd:"この一足、<br>ほかにはない",handMark:"手の跡",handMarkP:"つま先で鼻緒が折り返すところに、明るい藍がのぞいています。機械では生まれない跡です。",sample:"この一足が記録されるまでの見本データです。",
+ welcomeBack:"おかえりなさい、<i>{n}</i>さん",welcomeBackSub:"この反の七番目 · {d}から",
+ thisPair:"この一足",authentic:"正規品",edition:"裁ち",editionV:"一反17足の7番目",finished:"仕上がり",finishedLong:"2026年11月18日",finishedShort:"2026.11.18",dyedAt:"染め",dyedAtV:"京都・岩井染工",technique:"技法",handMarkL:"手の跡",handMarkV:"左・つま先の折り返し",keeper:"持ち主",unclaimed:"まだいません",token:"トークン",tokenV:"発行予定",backNote:"この一足の記録が登録されるまでの見本です。",tapFlip:"切手をタップすると、裏返ります",close:"閉じる",
+ filmNum:"できるまで",mute:"消音",sound:"音を出す",replay:"もう一度",endc:"この反から七番目 · 2026年11月18日 染め上がり",
+ pairEd:"この一足、<br>ほかにはない",handMark:"手の跡",handMarkP:"つま先で鼻緒が折り返すところに、明るい藍がのぞいています。機械では生まれない跡です。",sample:"岩井染工がこの反を記録するまでの見本データです。",
  pattern:"柄",kikuT:"菊 · 唐草",kikuP:"菊も唐草も、縁起がよいとされてきたモチーフです。その二つを組み合わせた文様です。",
  stencil:"型紙",stencilP:"柿渋を塗った和紙に模様を彫り、その型で染める。これが「型友禅」です。彫った型紙を生地にのせ、へらで色をのせて模様を写していきます。",workshop:"工房",
  colour:"色",colourP:"色の合わせ方は職人の感覚です。染料をどれくらい入れるかを見ながら、色を決めていきます。",
@@ -623,6 +636,8 @@ function arrive(pg){
   if(sev)tl.from(sev,{yPercent:30,opacity:0,duration:1.4},0);
   const ph=pg.querySelector(".ph img");if(ph)tl.from(ph,{scale:1.18,duration:1.8,ease:"power3.out"},0);
   tl.fromTo(rv,{opacity:0,y:14},{opacity:1,y:0,duration:.8,stagger:.08},.6);
+  const cs=pg.querySelectorAll(".bolt .c");
+  if(cs.length){tl.fromTo(cs,{opacity:.25},{opacity:1,duration:.25,stagger:.07,ease:"none"},.2);const me=pg.querySelector(".bolt .me"),tg=pg.querySelector(".bolt .tag");tl.fromTo(me,{outlineColor:"rgba(196,58,44,0)"},{outlineColor:"rgba(196,58,44,1)",duration:.3,onComplete:buzz},1.5).fromTo(tg,{opacity:0,x:-8},{opacity:1,x:0,duration:.6},1.6)}
   const seal=pg.querySelector(".seal");if(seal)tl.fromTo(seal,{scale:2.2,rotate:-20},{scale:1,rotate:-4,duration:.35,ease:"power4.in",onComplete:buzz},1.3);
 }
 const seen=new WeakSet();
