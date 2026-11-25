@@ -5,7 +5,7 @@ Kyoto AI Innovation Lab FA26, Team A. A page an NFC tag opens for one pair of WL
 Static site, no build step. Vercel deploys `main` as is.
 
 - `index.html`: the whole page (styles, markup, script)
-- `img/`: WebP photos, the engraved stamp, pre-rendered brush glyphs (g-*.webp)
+- `img/`: WebP photos, the engraved stamp, pre-rendered brush glyphs (g-*.webp), the 27 s film (film.mp4, 1.9 MB, loads only after the first tap) and its poster
 - `fonts/`: subset WOFF2 fonts (only the characters the page uses; re-subset with pyftsubset if you add new kanji)
 - `lib/`: GSAP 3.15 and SplitText
 
