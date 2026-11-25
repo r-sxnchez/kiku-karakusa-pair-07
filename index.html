@@ -273,6 +273,7 @@ body.gating #lang{right:16px}
 .keep .sign{margin-top:10px;color:var(--mute);text-transform:none;letter-spacing:.08em}
 footer{background:var(--sumi);padding:30px 20px calc(50px + env(safe-area-inset-bottom));color:var(--mute);border-top:1px solid var(--line0);scroll-snap-align:end}
 .live-item footer .demo{display:none!important}
+.visitor .st-val,.visitor .pair .ledger .nvis{display:none}
 .err{min-height:0;margin:8px 0 0;color:#f0a596;font-size:13px;line-height:1.5}.err:empty{display:none}
 .tokv{font-variant-numeric:tabular-nums;word-break:break-all}
 footer .demo{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
@@ -305,7 +306,7 @@ html.js .rv{opacity:0}
   <div class="bar" aria-hidden="true"><i id="bar"></i></div>
   <p class="num t">00 &nbsp; <span data-t="filmNum"></span></p>
   <div class="ctl"><button class="rep t" id="snd"></button><button class="rep t" id="rep" data-t="replay"></button></div>
-  <p class="endc t" id="endT" data-t="endc" data-tn="endcN"></p>
+  <p class="endc t" id="endT" data-t="endc" data-tn="endcN" data-tv="endcV"></p>
 </section>
 
 <!-- 01 the workshop -->
@@ -321,16 +322,16 @@ html.js .rv{opacity:0}
 
 <!-- 02 this pair: the seventh cut from one bolt -->
 <section class="pg pair paper" data-pg="02" aria-label="This pair">
-  <div class="bolt" aria-hidden="true"><i class="c"><span>01</span></i><i class="c"><span>02</span></i><i class="c"><span>03</span></i><i class="c"><span>04</span></i><i class="c"><span>05</span></i><i class="c"><span>06</span></i><i class="c me"><span>07</span></i><i class="c"><span>08</span></i><i class="c"><span>09</span></i><i class="c"><span>10</span></i><i class="c"><span>11</span></i><i class="c"><span>12</span></i><i class="c"><span>13</span></i><i class="c"><span>14</span></i><i class="c"><span>15</span></i><i class="c"><span>16</span></i><i class="c"><span>17</span></i><b class="tag t" data-t="yours"></b></div>
+  <div class="bolt" aria-hidden="true"><i class="c"><span>01</span></i><i class="c"><span>02</span></i><i class="c"><span>03</span></i><i class="c"><span>04</span></i><i class="c"><span>05</span></i><i class="c"><span>06</span></i><i class="c me"><span>07</span></i><i class="c"><span>08</span></i><i class="c"><span>09</span></i><i class="c"><span>10</span></i><i class="c"><span>11</span></i><i class="c"><span>12</span></i><i class="c"><span>13</span></i><i class="c"><span>14</span></i><i class="c"><span>15</span></i><i class="c"><span>16</span></i><i class="c"><span>17</span></i><b class="tag t" data-t="yours" data-tv="yoursV"></b></div>
   <p class="num t rv">02</p>
   <div class="txt">
-    <p class="ed t rv" data-t="pairEd" data-tn="pairEdN"></p>
-    <h2 class="hl rv" data-t="boltH"></h2>
-    <p class="p rv" id="boltP" data-t="boltP" data-tn="boltPOwner"></p>
+    <p class="ed t rv" data-t="pairEd" data-tn="pairEdN" data-tv="pairEdV"></p>
+    <h2 class="hl rv" data-t="boltH" data-tv="boltHV"></h2>
+    <p class="p rv" id="boltP" data-t="boltP" data-tn="boltPOwner" data-tv="boltPV"></p>
     <div class="ledger t rv">
       <div><span data-t="dyed"></span><b data-t="finishedShort"></b></div>
-      <div><span data-t="fromBolt"></span><b data-t="fromBoltV"></b></div>
-      <div><span data-t="yourCut"></span><b data-t="yourCutV"></b></div>
+      <div class="nvis"><span data-t="fromBolt"></span><b data-t="fromBoltV"></b></div>
+      <div><span data-t="yourCut" data-tv="yourCutL2"></span><b data-t="yourCutV" data-tv="yourCutV2"></b></div>
     </div>
     <p class="sample rv" data-t="sample"></p>
   </div>
@@ -396,7 +397,7 @@ html.js .rv{opacity:0}
 /* ---------- words, in two languages ---------- */
 const T={
 en:{
- codeL:"Code on your card",codePH:"6 letters, inside the box",errCode:"That code does not match the card in the box. Check it and try again.",errTaken:"This pair was claimed a moment ago.",errNet:"We could not reach this pair's record. Check your connection and try again.",errNone:"We cannot find a record for this pair.",retry:"Try again",working:"Stamping",visTitle:"This pair belongs to <i>{n}</i>",visSub:"Kyoto to {c}. Recorded as theirs since {d}.",visGo:"Show me how it was made",tokenOn:"{t}",owner:"Owner",endcN:"{Ord} from its bolt · now with {n}",bioNumN:"The hands behind your pair",pairEdN:"{n}'s pair,<br>and no other",handMarkSN:"<b>The hand mark.</b> A fleck of brighter indigo where your strap folds at the toe. A machine would not leave it.",kikuPN:"Chrysanthemum and arabesque vine, both long held as good omens, joined in one pattern: a wish for long life, and for things to keep growing. May it bring the same to you, {n}.",colourPN:"Matched by the craftsman's own sense, deciding how much dye to add as he goes. The blue on your strap came from that judgement, on that day.",carePN:"{n}, inside the hanao are cotton and stencil paper, and water takes their shape away. On rainy days, or when you wash the shoes, take the hanao off first. Cared for, it stays with you a long time.",stampPageN:"{n}'s stamp page",thanksN:"Thank you, {n}, for carrying Kyoto's handwork into your own days.",signoff:"With whole love, from Kyoto",letterFromSender:"{to}, {f} sent you something from Kyoto. Tap to open.",makerH:"A word from Iwai Senkou",makerEn:"“We’d be glad if you enjoy that side of it too.”",makerCtx:"On the two blues they chose for this strap.",makerGo:"Meet the hands that made it",boltPOwner:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. It gave {ofw} pairs of straps, and no more will be cut from it. {n}, yours was the {ord}.",welcomeBackSub1:"With you since today, {d}",closing:"When it wears thin, it can go home to the hands that dyed it.",
+ visTitle:"This is <i>{n}'s</i> pair",visSub:"Stamped in {n}'s name, Kyoto to {c}, on {d}. Iwai Senkou dyed it; it has been {n}'s ever since.",endcV:"Dyed in Kyoto · now with {o}",pairEdV:"{o}'s pair,<br>and no other",boltHV:"Cut from one bolt of cloth, for one person.",boltPV:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. Each pair of straps cut from it went to one person. This one is {o}'s.",yourCutL2:"Belongs to",yourCutV2:"{o}",yoursV:"{o}",stampPageV:"{o}'s stamp page",codeL:"Code on your card",codePH:"6 letters, inside the box",errCode:"That code does not match the card in the box. Check it and try again.",errTaken:"This pair was claimed a moment ago.",errNet:"We could not reach this pair's record. Check your connection and try again.",errNone:"We cannot find a record for this pair.",retry:"Try again",working:"Stamping",visGo:"Show me how it was made",tokenOn:"{t}",owner:"Owner",endcN:"{Ord} from its bolt · now with {n}",bioNumN:"The hands behind your pair",pairEdN:"{n}'s pair,<br>and no other",handMarkSN:"<b>The hand mark.</b> A fleck of brighter indigo where your strap folds at the toe. A machine would not leave it.",kikuPN:"Chrysanthemum and arabesque vine, both long held as good omens, joined in one pattern: a wish for long life, and for things to keep growing. May it bring the same to you, {n}.",colourPN:"Matched by the craftsman's own sense, deciding how much dye to add as he goes. The blue on your strap came from that judgement, on that day.",carePN:"{n}, inside the hanao are cotton and stencil paper, and water takes their shape away. On rainy days, or when you wash the shoes, take the hanao off first. Cared for, it stays with you a long time.",stampPageN:"{n}'s stamp page",thanksN:"Thank you, {n}, for carrying Kyoto's handwork into your own days.",signoff:"With whole love, from Kyoto",letterFromSender:"{to}, {f} sent you something from Kyoto. Tap to open.",makerH:"A word from Iwai Senkou",makerEn:"“We’d be glad if you enjoy that side of it too.”",makerCtx:"On the two blues they chose for this strap.",makerGo:"Meet the hands that made it",boltPOwner:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. It gave {ofw} pairs of straps, and no more will be cut from it. {n}, yours was the {ord}.",welcomeBackSub1:"With you since today, {d}",closing:"When it wears thin, it can go home to the hands that dyed it.",
  boltH:"The {ord} cut from one bolt of cloth.",boltP:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. It gave {ofw} pairs of straps, and no more will be cut from it. Yours was the {ord}.",yours:"Yours",dyed:"Dyed",fromBolt:"From this bolt",fromBoltV:"{of} pairs",yourCut:"Your cut",yourCutV:"The {nth}",handMarkS:"<b>The hand mark.</b> A fleck of brighter indigo where the strap folds at the toe. A machine would not leave it.",
  bioNum:"The workshop",bioSub:"Kata-yuzen kimono dyers in Kyoto, for more than a century",bioQuote:"“For this one, we tried dyeing it in deep blue and light blue to suit the texture and feel of the pattern.”",bioCite:"Iwai Senkou, on this strap",bioBody:"Known for komon, small repeating patterns, and for delicate designs. They still dye with the techniques handed down since their founding. Many of their patterns are simple, and they see that simplicity as their strength.",fFounded:"Founded",fFoundedV:"Early Meiji era",fDyes:"They dye",fDyesV:"Kimono and obi",fColour:"Colour",fColourV:"Mixed by hand",
  gTitle:"Is this pair <i>yours?</i>",gHint:"Tap the stamp to turn it over.",mine:"It's mine",gift:"It's a gift",show:"Show me how it was made",
@@ -422,7 +423,7 @@ en:{
  demoMsg:"I walked past this shop in Kyoto and thought of you.\nSomeone dyed this by hand, one board at a time.\nWear it everywhere."
 },
 ja:{
- codeL:"カードのコード",codePH:"箱の中のカードにある6文字",errCode:"箱の中のカードのコードと一致しません。もう一度ご確認ください。",errTaken:"この一足は、たった今登録されました。",errNet:"この一足の記録に接続できませんでした。通信環境をご確認のうえ、もう一度お試しください。",errNone:"この一足の記録が見つかりません。",retry:"もう一度",working:"スタンプを押しています",visTitle:"この一足は、<i>{n}</i>さんのものです",visSub:"京都から{c}へ。{d}から、{n}さんの一足として記録されています。",visGo:"できるまでを見る",tokenOn:"{t}",owner:"持ち主",endcN:"この反から{ord}番目 · いまは{n}さんのもとに",bioNumN:"あなたの一足を染めた工房",pairEdN:"{n}さんの一足、<br>ほかにはない",handMarkSN:"<b>手の跡。</b>{n}さんの鼻緒の、つま先の折り返しにのぞく明るい藍。機械では生まれない跡です。",kikuPN:"菊も唐草も、縁起がよいとされてきたモチーフです。その二つを組み合わせた文様です。{n}さんの毎日にも、よいことが続きますように。",colourPN:"色の合わせ方は職人の感覚です。染料をどれくらい入れるかを見ながら、色を決めていきます。あなたの鼻緒の青も、その日のその手が決めた色です。",carePN:"{n}さんへ。鼻緒の中には綿と型紙が入っていて、水に濡れると形が崩れます。雨の日や靴を洗うときは、鼻緒を外してください。大切に履いていただけたら、長くおともします。",stampPageN:"{n}さんのスタンプページ",thanksN:"{n}さん、京都の手仕事を、日々の暮らしへ連れていってくださり、ありがとうございます。",signoff:"京都より、心をこめて",letterFromSender:"{to}さん、{f}さんから京都の贈りものが届いています。タップして開いてください。",makerH:"岩井染工より",makerEn:"",makerCtx:"この鼻緒のために選んだ、二つのブルーについて。",makerGo:"できるまでを見る",boltPOwner:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから生まれた鼻緒は{ofw}足分。この反から、これ以上は生まれません。{n}さん、あなたの一足は{ord}番目に裁たれたものです。",welcomeBackSub1:"今日、{d}から、あなたのもとに",closing:"すり減ったら、染めた手のもとへ帰すことができます。",
+ visTitle:"<i>{n}</i>さんの一足です",visSub:"京都から{c}へ。{d}、{n}さんの名前でスタンプが押されました。岩井染工が染め、それからずっと{n}さんの一足です。",endcV:"京都で染め · いまは{o}さんのもとに",pairEdV:"{o}さんの一足、<br>ほかにはない",boltHV:"一反の布から、ひとりのために裁たれた鼻緒。",boltPV:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから裁たれた鼻緒は、一足ずつ、ひとりのもとへ。この一足は{o}さんのものです。",yourCutL2:"持ち主",yourCutV2:"{o}さん",yoursV:"{o}さん",stampPageV:"{o}さんのスタンプページ",codeL:"カードのコード",codePH:"箱の中のカードにある6文字",errCode:"箱の中のカードのコードと一致しません。もう一度ご確認ください。",errTaken:"この一足は、たった今登録されました。",errNet:"この一足の記録に接続できませんでした。通信環境をご確認のうえ、もう一度お試しください。",errNone:"この一足の記録が見つかりません。",retry:"もう一度",working:"スタンプを押しています",visGo:"できるまでを見る",tokenOn:"{t}",owner:"持ち主",endcN:"この反から{ord}番目 · いまは{n}さんのもとに",bioNumN:"あなたの一足を染めた工房",pairEdN:"{n}さんの一足、<br>ほかにはない",handMarkSN:"<b>手の跡。</b>{n}さんの鼻緒の、つま先の折り返しにのぞく明るい藍。機械では生まれない跡です。",kikuPN:"菊も唐草も、縁起がよいとされてきたモチーフです。その二つを組み合わせた文様です。{n}さんの毎日にも、よいことが続きますように。",colourPN:"色の合わせ方は職人の感覚です。染料をどれくらい入れるかを見ながら、色を決めていきます。あなたの鼻緒の青も、その日のその手が決めた色です。",carePN:"{n}さんへ。鼻緒の中には綿と型紙が入っていて、水に濡れると形が崩れます。雨の日や靴を洗うときは、鼻緒を外してください。大切に履いていただけたら、長くおともします。",stampPageN:"{n}さんのスタンプページ",thanksN:"{n}さん、京都の手仕事を、日々の暮らしへ連れていってくださり、ありがとうございます。",signoff:"京都より、心をこめて",letterFromSender:"{to}さん、{f}さんから京都の贈りものが届いています。タップして開いてください。",makerH:"岩井染工より",makerEn:"",makerCtx:"この鼻緒のために選んだ、二つのブルーについて。",makerGo:"できるまでを見る",boltPOwner:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから生まれた鼻緒は{ofw}足分。この反から、これ以上は生まれません。{n}さん、あなたの一足は{ord}番目に裁たれたものです。",welcomeBackSub1:"今日、{d}から、あなたのもとに",closing:"すり減ったら、染めた手のもとへ帰すことができます。",
  boltH:"一反の布から、{ord}番目に裁たれた鼻緒。",boltP:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから生まれた鼻緒は{ofw}足分。この反から、これ以上は生まれません。あなたの一足は、{ord}番目に裁たれたものです。",yours:"あなたの一足",dyed:"染め上がり",fromBolt:"この反から",fromBoltV:"{ofw}足分",yourCut:"あなたの一足",yourCutV:"{ord}番目",handMarkS:"<b>手の跡。</b>つま先の折り返しにのぞく、明るい藍。機械では生まれない跡です。",
  bioNum:"工房",bioSub:"明治初期から百年以上、型友禅で着物を染めてきた京都の老舗",bioQuote:"「今回、柄の風合いから濃いブルーと淡いブルーで染めてみました。」",bioCite:"岩井染工、この鼻緒について",bioBody:"得意なのは小紋柄で、紋様の繊細さが特徴です。創業当時からの技術を受け継ぎ、変わらない染め方で着物を染めています。柄はシンプルなものが多く、岩井染工はそれを強みにしています。",fFounded:"創業",fFoundedV:"明治初期",fDyes:"染めるもの",fDyesV:"着物と帯",fColour:"色合わせ",fColourV:"職人の手合わせ",
  gTitle:"この一足は、<i>あなたのものですか?</i>",gHint:"切手をタップすると、裏返ります。",mine:"自分のものです",gift:"贈りものです",show:"できるまでを見る",
@@ -461,13 +462,14 @@ const cname=(code,lang)=>{try{return new Intl.DisplayNames([lang||L],{type:"regi
 function applyLang(root){
   document.documentElement.lang=L;
   const nm=who();
-  (root||document).querySelectorAll("[data-t]").forEach(e=>{const v=e.dataset.v?JSON.parse(e.dataset.v):{};let k=e.dataset.t;if(nm&&e.dataset.tn){k=e.dataset.tn;v.n=nm}e.innerHTML=t(k,v)});
+  (root||document).querySelectorAll("[data-t]").forEach(e=>{const v=e.dataset.v?JSON.parse(e.dataset.v):{};let k=e.dataset.t;if(nm&&e.dataset.tn){k=e.dataset.tn;v.n=nm}else if(VIS()&&e.dataset.tv){k=e.dataset.tv;v.o=S.keeper}e.innerHTML=t(k,v)});
   (root||document).querySelectorAll("[data-tp]").forEach(e=>{e.placeholder=t(e.dataset.tp)});
   document.querySelectorAll("#lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===L)));
   sndLabel&&sndLabel();
 }
 const V=o=>esc(JSON.stringify(o));
 /* who is reading: the owner once stamped, or the person a gift is addressed to */
+const VIS=()=>S.status==="claimed"&&!MINE;
 function who(){return S.status==="claimed"?(MINE?S.keeper:""):S.status==="gift"?S.gift.to:""}
 
 /* ---------- state ---------- */
@@ -529,7 +531,7 @@ function stampHTML(id,mini){
   const claimed=S.status==="claimed";
   const back=mini?"":`<div class="face face--back"><div class="face__in back">
     <h4><b data-t="thisPair"></b> <span data-t="authentic"></span></h4>
-    <div class="r"><span data-t="edition"></span><span data-t="editionV"></span></div>
+    ${VIS()?"":`<div class="r"><span data-t="edition"></span><span data-t="editionV"></span></div>`}
     <div class="r"><span data-t="finished"></span><span data-t="finishedLong"></span></div>
     <div class="r"><span data-t="dyedAt"></span><span class="jp" data-t="dyedAtV"></span></div>
     <div class="r"><span data-t="technique"></span><span class="jp">型友禅</span></div>
@@ -557,7 +559,7 @@ function bindFlip(el){
 const gate=$("gate");
 let gen=0,dtl=null;
 function resetGate(){gen++;if(dtl){dtl.kill();dtl=null}gate.style.cssText="";gate.classList.remove("gone","form-open","stamped");document.documentElement.classList.add("locked");document.body.classList.add("gating")}
-const gTop=()=>`<div class="g-top t">No. ${String(ITEM.no).padStart(2,"0")} / ${ITEM.of} &nbsp;·&nbsp; <span class="jp">岩井染工 × WLK</span></div>`;
+const gTop=()=>`<div class="g-top t">${VIS()?"":`No. ${String(ITEM.no).padStart(2,"0")} / ${ITEM.of} &nbsp;·&nbsp; `}<span class="jp">岩井染工 × WLK</span></div>`;
 function gateFirst(){
   resetGate();
   gate.innerHTML=gTop()+`<div class="g-stage">${stampHTML("gStamp")}</div>
@@ -658,7 +660,7 @@ function gateMsg(k,retry){
   gate.innerHTML=`<div class="g-ask" id="gAsk" style="margin:auto"><p class="p" data-t="${k}"></p>${retry?`<div class="choices"><button class="b" id="rt" data-t="retry"></button></div>`:""}</div>`;
   applyLang(gate);if(retry)$("rt").onclick=boot;
 }
-function route(){render();if(S.status==="claimed")MINE?gateOwner():gateVisitor();else if(S.status==="gift")gateRecipient(false);else gateFirst()}
+function route(){document.body.classList.toggle("visitor",VIS());render();if(S.status==="claimed")MINE?gateOwner():gateVisitor();else if(S.status==="gift")gateRecipient(false);else gateFirst()}
 async function boot(){
   if(!PID){route();return}
   resetGate();gate.innerHTML="";
@@ -732,8 +734,8 @@ function render(){
   boltMap();applyLang();
   const k=$("keep");let body="";
   if(S.status==="claimed"){
-    body=`<p class="t" style="color:var(--mute)" data-t="stampPage" ${MINE?'data-tn="stampPageN"':""}></p><h2 data-t="claimedTitle" data-v="${V({c:cname(S.cc)})}"></h2>${stampHTML("kStamp")}
-    <div class="rec"><div><span class="t" data-t="owner"></span><span>${esc(S.keeper)}</span></div><div><span class="t" data-t="countryL"></span><span>${esc(cname(S.cc))}</span></div><div><span class="t" data-t="since"></span><span>${esc(fmt(S.since))}</span></div><div><span class="t" data-t="pairL"></span><span data-t="editionV"></span></div><div><span class="t" data-t="token"></span>${tokHTML()}</div></div>
+    body=`<p class="t" style="color:var(--mute)" data-t="stampPage" ${MINE?'data-tn="stampPageN"':'data-tv="stampPageV"'}></p><h2 data-t="claimedTitle" data-v="${V({c:cname(S.cc)})}"></h2>${stampHTML("kStamp")}
+    <div class="rec"><div><span class="t" data-t="owner"></span><span>${esc(S.keeper)}</span></div><div><span class="t" data-t="countryL"></span><span>${esc(cname(S.cc))}</span></div><div><span class="t" data-t="since"></span><span>${esc(fmt(S.since))}</span></div>${VIS()?"":`<div><span class="t" data-t="pairL"></span><span data-t="editionV"></span></div>`}<div><span class="t" data-t="token"></span>${tokHTML()}</div></div>
     ${MINE?`<div class="svc"><button data-svc="repair"><span data-t="repair"></span><span>&rarr;</span></button><button data-svc="again"><span data-t="again"></span><span>&rarr;</span></button></div><p class="closing" data-t="thanksN" data-v="${V({n:S.keeper})}"></p><p class="sign t" data-t="signoff"></p>`:""}`;
   }else if(S.status==="gift"){
     body=`<p class="t" style="color:var(--mute)" data-t="stampPage"></p><h2 data-t="giftPageTitle"></h2><p class="p" style="color:var(--mute);max-width:30ch;margin:0 auto" data-t="giftPageP" data-v="${V({to:S.gift.to||"—"})}"></p><div class="slot t" data-t="waiting" data-v="${V({to:S.gift.to||"—"})}"></div>`;
