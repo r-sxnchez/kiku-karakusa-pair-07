@@ -18,3 +18,15 @@ Every page is exactly one screen tall (100dvh, container query units, mandatory 
 Flows: first tap (mine / gift / show me), gift recipient, returning owner. State lives in localStorage (key `kk-pair07-v5`); the footer has demo buttons to switch flows.
 
 Photographs belong to Whole Love Kyoto, lent for Demo Day only. Remove them after Demo Day.
+
+## Live items (Supabase)
+
+Each NFC chip is written with its own link: `https://kiku-karakusa-pair-07.vercel.app/?id=WLK-0001` (to WLK-0005). The page reads that pair's row from the Supabase project **Kyoto-AI-Lab** (table `passports`). Without `?id` the page runs the old local demo.
+
+- `get_passport(id)` public read; never returns the claim code.
+- `claim_passport(id, code, name, country, date)` buyer claims once with the code on the card in the box. A sealed gift is claimed by the recipient without a code.
+- `seal_gift(id, code, to, message, from, date)` buyer seals a letter instead.
+- The table itself is closed to the public key (RLS on, no grants); only these functions are callable.
+- The phone that claimed is remembered in localStorage (`kk-own-<id>`); every other phone sees a view-only record.
+- `token_id` and `token_chain` are empty until minting; when filled, they show on the stamp back and the stamp page.
+- To reset a pair for testing, in the Supabase SQL editor: `update passports set status='unclaimed', owner_name=null, owner_cc=null, claimed_at=null, pm_date=null, gift_to=null, gift_msg=null, gift_from=null, gift_sealed_at=null where id='WLK-0001';`

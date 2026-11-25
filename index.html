@@ -192,9 +192,9 @@ body.gating #lang{right:16px}
 .pair .c span{position:absolute;left:4px;top:50%;transform:translateY(-50%);font:500 9px/1 "Zen Kaku Gothic New",sans-serif;letter-spacing:.06em;color:var(--paper);background:rgba(22,20,15,.45);padding:2px 3px}
 .pair .c.me{outline:3px solid var(--red);outline-offset:-1px;z-index:2;background:rgba(196,58,44,.18)}
 .pair .c.me span{background:var(--red);font-size:11px;font-weight:700}
-.pair .tag{position:absolute;right:4px;top:calc((100% / 17) * 6.5);transform:translateY(-50%);white-space:nowrap;color:var(--paper);background:var(--red);font-weight:700;font-size:9px;padding:2px 4px;z-index:3}
+.pair .tag{position:absolute;right:4px;top:calc(100% / var(--of,17) * (var(--no,7) - .5));transform:translateY(-50%);white-space:nowrap;color:var(--paper);background:var(--red);font-weight:700;font-size:9px;padding:2px 4px;z-index:3}
 .pair .txt{left:calc(20px + min(24cqw,120px) + 20px);right:32px;top:calc(9cqh + env(safe-area-inset-top) + min(4cqh,30px));display:flex;flex-direction:column}
-.pair .ed{margin-top:calc(100cqh / 17 * 1.6)}
+.pair .ed{margin-top:calc(100cqh / var(--of,17) * 1.6)}
 .pair .hl{font:500 min(30px,4.4cqh)/1.1 "Bodoni Moda","Zen Old Mincho",serif;margin:min(10px,1.4cqh) 0 min(12px,1.6cqh);text-wrap:balance}
 :lang(ja) .pair .hl{font:700 min(22px,3.4cqh)/1.45 "Zen Old Mincho",serif}
 .pair .ledger{margin-top:min(14px,2cqh)}
@@ -272,6 +272,9 @@ body.gating #lang{right:16px}
 :lang(ja) .keep .closing{font:400 15px/1.8 "Zen Old Mincho",serif}
 .keep .sign{margin-top:10px;color:var(--mute);text-transform:none;letter-spacing:.08em}
 footer{background:var(--sumi);padding:30px 20px calc(50px + env(safe-area-inset-bottom));color:var(--mute);border-top:1px solid var(--line0);scroll-snap-align:end}
+.live-item footer .demo{display:none!important}
+.err{min-height:0;margin:8px 0 0;color:#f0a596;font-size:13px;line-height:1.5}.err:empty{display:none}
+.tokv{font-variant-numeric:tabular-nums;word-break:break-all}
 footer .demo{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 footer .demo button{min-height:44px;padding:0 12px;border:1px dashed var(--line0);background:none;font:500 11px/1 "Zen Kaku Gothic New",sans-serif;letter-spacing:.1em}
 .note-sheet{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:80;max-width:420px;margin:0 auto;background:var(--paper);color:var(--ink0);padding:20px;transform:translateY(130%);transition:transform .45s var(--ease)}
@@ -393,18 +396,18 @@ html.js .rv{opacity:0}
 /* ---------- words, in two languages ---------- */
 const T={
 en:{
- owner:"Owner",endcN:"Seventh from its bolt · now with {n}",bioNumN:"The hands behind your pair",pairEdN:"{n}'s pair,<br>and no other",handMarkSN:"<b>The hand mark.</b> A fleck of brighter indigo where your strap folds at the toe. A machine would not leave it.",kikuPN:"Chrysanthemum and arabesque vine, both long held as good omens, joined in one pattern: a wish for long life, and for things to keep growing. May it bring the same to you, {n}.",colourPN:"Matched by the craftsman's own sense, deciding how much dye to add as he goes. The blue on your strap came from that judgement, on that day.",carePN:"{n}, inside the hanao are cotton and stencil paper, and water takes their shape away. On rainy days, or when you wash the shoes, take the hanao off first. Cared for, it stays with you a long time.",stampPageN:"{n}'s stamp page",thanksN:"Thank you, {n}, for carrying Kyoto's handwork into your own days.",signoff:"With whole love, from Kyoto",letterFromSender:"{to}, {f} sent you something from Kyoto. Tap to open.",makerH:"A word from Iwai Senkou",makerEn:"“We’d be glad if you enjoy that side of it too.”",makerCtx:"On the two blues they chose for this strap.",makerGo:"Meet the hands that made it",boltPOwner:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. It gave seventeen pairs of straps, and no more will be cut from it. {n}, yours was the seventh.",welcomeBackSub1:"With you since today, {d}",closing:"When it wears thin, it can go home to the hands that dyed it.",
- boltH:"The seventh cut from one bolt of cloth.",boltP:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. It gave seventeen pairs of straps, and no more will be cut from it. Yours was the seventh.",yours:"Yours",dyed:"Dyed",fromBolt:"From this bolt",fromBoltV:"17 pairs",yourCut:"Your cut",yourCutV:"The 7th",handMarkS:"<b>The hand mark.</b> A fleck of brighter indigo where the strap folds at the toe. A machine would not leave it.",
+ codeL:"Code on your card",codePH:"6 letters, inside the box",errCode:"That code does not match the card in the box. Check it and try again.",errTaken:"This pair was claimed a moment ago.",errNet:"We could not reach this pair's record. Check your connection and try again.",errNone:"We cannot find a record for this pair.",retry:"Try again",working:"Stamping",visTitle:"This pair belongs to <i>{n}</i>",visSub:"Kyoto to {c}. Recorded as theirs since {d}.",visGo:"Show me how it was made",tokenOn:"{t}",owner:"Owner",endcN:"{Ord} from its bolt · now with {n}",bioNumN:"The hands behind your pair",pairEdN:"{n}'s pair,<br>and no other",handMarkSN:"<b>The hand mark.</b> A fleck of brighter indigo where your strap folds at the toe. A machine would not leave it.",kikuPN:"Chrysanthemum and arabesque vine, both long held as good omens, joined in one pattern: a wish for long life, and for things to keep growing. May it bring the same to you, {n}.",colourPN:"Matched by the craftsman's own sense, deciding how much dye to add as he goes. The blue on your strap came from that judgement, on that day.",carePN:"{n}, inside the hanao are cotton and stencil paper, and water takes their shape away. On rainy days, or when you wash the shoes, take the hanao off first. Cared for, it stays with you a long time.",stampPageN:"{n}'s stamp page",thanksN:"Thank you, {n}, for carrying Kyoto's handwork into your own days.",signoff:"With whole love, from Kyoto",letterFromSender:"{to}, {f} sent you something from Kyoto. Tap to open.",makerH:"A word from Iwai Senkou",makerEn:"“We’d be glad if you enjoy that side of it too.”",makerCtx:"On the two blues they chose for this strap.",makerGo:"Meet the hands that made it",boltPOwner:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. It gave {ofw} pairs of straps, and no more will be cut from it. {n}, yours was the {ord}.",welcomeBackSub1:"With you since today, {d}",closing:"When it wears thin, it can go home to the hands that dyed it.",
+ boltH:"The {ord} cut from one bolt of cloth.",boltP:"On 18 November 2026, Iwai Senkou dyed a single bolt of Kiku Karakusa. It gave {ofw} pairs of straps, and no more will be cut from it. Yours was the {ord}.",yours:"Yours",dyed:"Dyed",fromBolt:"From this bolt",fromBoltV:"{of} pairs",yourCut:"Your cut",yourCutV:"The {nth}",handMarkS:"<b>The hand mark.</b> A fleck of brighter indigo where the strap folds at the toe. A machine would not leave it.",
  bioNum:"The workshop",bioSub:"Kata-yuzen kimono dyers in Kyoto, for more than a century",bioQuote:"“For this one, we tried dyeing it in deep blue and light blue to suit the texture and feel of the pattern.”",bioCite:"Iwai Senkou, on this strap",bioBody:"Known for komon, small repeating patterns, and for delicate designs. They still dye with the techniques handed down since their founding. Many of their patterns are simple, and they see that simplicity as their strength.",fFounded:"Founded",fFoundedV:"Early Meiji era",fDyes:"They dye",fDyesV:"Kimono and obi",fColour:"Colour",fColourV:"Mixed by hand",
  gTitle:"Is this pair <i>yours?</i>",gHint:"Tap the stamp to turn it over.",mine:"It's mine",gift:"It's a gift",show:"Show me how it was made",
  keeperTitle:"Make it <i>yours</i>",keeperNote:"Your name and country go onto its stamp. From today, it is recorded as yours.",name:"Name",country:"Country",choose:"Choose",stampIt:"Stamp it",back:"Back",
- welcome:"Welcome, <i>{n}</i>",welcomeSub:"From Kyoto to {c}. The seventh pair from this bolt is now yours. Thank you for giving it a home.",
+ welcome:"Welcome, <i>{n}</i>",welcomeSub:"From Kyoto to {c}. The {ord} pair from this bolt is now yours. Thank you for giving it a home.",
  giftTitle:"A letter <i>inside</i>",giftNote:"The first thing they will see when they tap the pair. Write it the way you would say it.",forL:"For",theirName:"Their name",message:"Message",writePH:"Write it as you would on paper",fromL:"From",yourName:"Your name",seal:"Seal and stamp it",
  sealedFor:"Sealed for <i>{to}</i>",sealedNote:"When they tap the pair, your letter opens first. Once opened, it can't be changed.",envFor:"For {to}",
  letterWaiting:"{to}, a letter is waiting for you. Tap to open.",letterFrom:"from {f}",receive:"Receive it",lookFirst:"Show me how it was made first",receiveTitle:"Make it <i>yours</i>, {n}",
  welcomeBack:"Welcome back, <i>{n}</i>",welcomeBackSub:"With you for {days} days, since {d}",
- thisPair:"This pair",authentic:"Authentic piece",edition:"Cut",editionV:"7th of 17, one bolt",finished:"Finished",finishedLong:"18 November 2026",finishedShort:"18 Nov 2026",dyedAt:"Dyed at",dyedAtV:"岩井染工, Kyoto",technique:"Technique",handMarkL:"Hand mark",handMarkV:"Toe fold, left",keeper:"Keeper",unclaimed:"Awaiting its owner",token:"Token",tokenV:"To be issued",backNote:"Sample record until this exact pair is logged.",tapFlip:"Tap the stamp to turn it over",close:"Close",
- filmNum:"How it was made",mute:"Mute",sound:"Sound",replay:"Replay",endc:"Cut seventh from its bolt · dyed 18 XI 2026",
+ thisPair:"This pair",authentic:"Authentic piece",edition:"Cut",editionV:"{nth} of {of}, one bolt",finished:"Finished",finishedLong:"18 November 2026",finishedShort:"18 Nov 2026",dyedAt:"Dyed at",dyedAtV:"岩井染工, Kyoto",technique:"Technique",handMarkL:"Hand mark",handMarkV:"Toe fold, left",keeper:"Keeper",unclaimed:"Awaiting its owner",token:"Token",tokenV:"To be issued",backNote:"Sample record until this exact pair is logged.",tapFlip:"Tap the stamp to turn it over",close:"Close",
+ filmNum:"How it was made",mute:"Mute",sound:"Sound",replay:"Replay",endc:"Cut {ord} from its bolt · dyed 18 XI 2026",
  pairEd:"This pair<br>and no other",handMark:"The hand mark",handMarkP:"Where the strap folds at the toe, a fleck of brighter indigo shows through. A machine would not leave it.",sample:"Sample data until Iwai Senkou records this bolt.",
  pattern:"The pattern",kikuT:"Kiku · Karakusa",kikuP:"Chrysanthemum and arabesque vine, both long held as good omens, joined in one pattern: a wish for long life, and for things to keep growing.",
  stencil:"The stencil",stencilP:"A pattern carved into washi paper coated with persimmon tannin, laid on the cloth, and the colour pressed through with a spatula.",workshop:"工房 · The workshop",
@@ -419,18 +422,18 @@ en:{
  demoMsg:"I walked past this shop in Kyoto and thought of you.\nSomeone dyed this by hand, one board at a time.\nWear it everywhere."
 },
 ja:{
- owner:"持ち主",endcN:"この反から七番目 · いまは{n}さんのもとに",bioNumN:"あなたの一足を染めた工房",pairEdN:"{n}さんの一足、<br>ほかにはない",handMarkSN:"<b>手の跡。</b>{n}さんの鼻緒の、つま先の折り返しにのぞく明るい藍。機械では生まれない跡です。",kikuPN:"菊も唐草も、縁起がよいとされてきたモチーフです。その二つを組み合わせた文様です。{n}さんの毎日にも、よいことが続きますように。",colourPN:"色の合わせ方は職人の感覚です。染料をどれくらい入れるかを見ながら、色を決めていきます。あなたの鼻緒の青も、その日のその手が決めた色です。",carePN:"{n}さんへ。鼻緒の中には綿と型紙が入っていて、水に濡れると形が崩れます。雨の日や靴を洗うときは、鼻緒を外してください。大切に履いていただけたら、長くおともします。",stampPageN:"{n}さんのスタンプページ",thanksN:"{n}さん、京都の手仕事を、日々の暮らしへ連れていってくださり、ありがとうございます。",signoff:"京都より、心をこめて",letterFromSender:"{to}さん、{f}さんから京都の贈りものが届いています。タップして開いてください。",makerH:"岩井染工より",makerEn:"",makerCtx:"この鼻緒のために選んだ、二つのブルーについて。",makerGo:"できるまでを見る",boltPOwner:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから生まれた鼻緒は十七足分。この反から、これ以上は生まれません。{n}さん、あなたの一足は七番目に裁たれたものです。",welcomeBackSub1:"今日、{d}から、あなたのもとに",closing:"すり減ったら、染めた手のもとへ帰すことができます。",
- boltH:"一反の布から、七番目に裁たれた鼻緒。",boltP:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから生まれた鼻緒は十七足分。この反から、これ以上は生まれません。あなたの一足は、七番目に裁たれたものです。",yours:"あなたの一足",dyed:"染め上がり",fromBolt:"この反から",fromBoltV:"十七足分",yourCut:"あなたの一足",yourCutV:"七番目",handMarkS:"<b>手の跡。</b>つま先の折り返しにのぞく、明るい藍。機械では生まれない跡です。",
+ codeL:"カードのコード",codePH:"箱の中のカードにある6文字",errCode:"箱の中のカードのコードと一致しません。もう一度ご確認ください。",errTaken:"この一足は、たった今登録されました。",errNet:"この一足の記録に接続できませんでした。通信環境をご確認のうえ、もう一度お試しください。",errNone:"この一足の記録が見つかりません。",retry:"もう一度",working:"スタンプを押しています",visTitle:"この一足は、<i>{n}</i>さんのものです",visSub:"京都から{c}へ。{d}から、{n}さんの一足として記録されています。",visGo:"できるまでを見る",tokenOn:"{t}",owner:"持ち主",endcN:"この反から{ord}番目 · いまは{n}さんのもとに",bioNumN:"あなたの一足を染めた工房",pairEdN:"{n}さんの一足、<br>ほかにはない",handMarkSN:"<b>手の跡。</b>{n}さんの鼻緒の、つま先の折り返しにのぞく明るい藍。機械では生まれない跡です。",kikuPN:"菊も唐草も、縁起がよいとされてきたモチーフです。その二つを組み合わせた文様です。{n}さんの毎日にも、よいことが続きますように。",colourPN:"色の合わせ方は職人の感覚です。染料をどれくらい入れるかを見ながら、色を決めていきます。あなたの鼻緒の青も、その日のその手が決めた色です。",carePN:"{n}さんへ。鼻緒の中には綿と型紙が入っていて、水に濡れると形が崩れます。雨の日や靴を洗うときは、鼻緒を外してください。大切に履いていただけたら、長くおともします。",stampPageN:"{n}さんのスタンプページ",thanksN:"{n}さん、京都の手仕事を、日々の暮らしへ連れていってくださり、ありがとうございます。",signoff:"京都より、心をこめて",letterFromSender:"{to}さん、{f}さんから京都の贈りものが届いています。タップして開いてください。",makerH:"岩井染工より",makerEn:"",makerCtx:"この鼻緒のために選んだ、二つのブルーについて。",makerGo:"できるまでを見る",boltPOwner:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから生まれた鼻緒は{ofw}足分。この反から、これ以上は生まれません。{n}さん、あなたの一足は{ord}番目に裁たれたものです。",welcomeBackSub1:"今日、{d}から、あなたのもとに",closing:"すり減ったら、染めた手のもとへ帰すことができます。",
+ boltH:"一反の布から、{ord}番目に裁たれた鼻緒。",boltP:"2026年11月18日、岩井染工が菊唐草を一反染めました。そこから生まれた鼻緒は{ofw}足分。この反から、これ以上は生まれません。あなたの一足は、{ord}番目に裁たれたものです。",yours:"あなたの一足",dyed:"染め上がり",fromBolt:"この反から",fromBoltV:"{ofw}足分",yourCut:"あなたの一足",yourCutV:"{ord}番目",handMarkS:"<b>手の跡。</b>つま先の折り返しにのぞく、明るい藍。機械では生まれない跡です。",
  bioNum:"工房",bioSub:"明治初期から百年以上、型友禅で着物を染めてきた京都の老舗",bioQuote:"「今回、柄の風合いから濃いブルーと淡いブルーで染めてみました。」",bioCite:"岩井染工、この鼻緒について",bioBody:"得意なのは小紋柄で、紋様の繊細さが特徴です。創業当時からの技術を受け継ぎ、変わらない染め方で着物を染めています。柄はシンプルなものが多く、岩井染工はそれを強みにしています。",fFounded:"創業",fFoundedV:"明治初期",fDyes:"染めるもの",fDyesV:"着物と帯",fColour:"色合わせ",fColourV:"職人の手合わせ",
  gTitle:"この一足は、<i>あなたのものですか?</i>",gHint:"切手をタップすると、裏返ります。",mine:"自分のものです",gift:"贈りものです",show:"できるまでを見る",
  keeperTitle:"この一足の<i>持ち主</i>に",keeperNote:"お名前と国を、この一足のスタンプに押します。今日から、あなたの一足として記録されます。",name:"お名前",country:"国",choose:"選択してください",stampIt:"スタンプを押す",back:"戻る",
- welcome:"ようこそ、<i>{n}</i>さん",welcomeSub:"京都から{c}へ。この反の七番目の一足は、今日からあなたのものです。大切に迎えてくださり、ありがとうございます。",
+ welcome:"ようこそ、<i>{n}</i>さん",welcomeSub:"京都から{c}へ。この反の{ord}番目の一足は、今日からあなたのものです。大切に迎えてくださり、ありがとうございます。",
  giftTitle:"なかに<i>手紙</i>を",giftNote:"相手が靴をタップすると、最初にこの手紙が開きます。",forL:"宛名",theirName:"相手のお名前",message:"メッセージ",writePH:"紙に書くように、どうぞ",fromL:"差出人",yourName:"あなたのお名前",seal:"封をして、スタンプを押す",
  sealedFor:"<i>{to}</i>さんへ、封をしました",sealedNote:"靴をタップすると、まずこの手紙が開きます。一度開くと、書き換えはできません。",envFor:"{to}さんへ",
  letterWaiting:"{to}さん、お手紙が届いています。タップして開いてください。",letterFrom:"{f}より",receive:"受け取る",lookFirst:"先に、できるまでを見る",receiveTitle:"{n}さん、<i>あなたの一足</i>に",
  welcomeBack:"おかえりなさい、<i>{n}</i>さん",welcomeBackSub:"{d}から、あなたのもとで{days}日目",
- thisPair:"この一足",authentic:"正規品",edition:"裁ち",editionV:"一反17足の7番目",finished:"仕上がり",finishedLong:"2026年11月18日",finishedShort:"2026.11.18",dyedAt:"染め",dyedAtV:"京都・岩井染工",technique:"技法",handMarkL:"手の跡",handMarkV:"左・つま先の折り返し",keeper:"持ち主",unclaimed:"持ち主を待っています",token:"トークン",tokenV:"発行予定",backNote:"この一足の記録が登録されるまでの見本です。",tapFlip:"切手をタップすると、裏返ります",close:"閉じる",
- filmNum:"できるまで",mute:"消音",sound:"音を出す",replay:"もう一度",endc:"この反から七番目 · 2026年11月18日 染め上がり",
+ thisPair:"この一足",authentic:"正規品",edition:"裁ち",editionV:"一反{of}足の{no}番目",finished:"仕上がり",finishedLong:"2026年11月18日",finishedShort:"2026.11.18",dyedAt:"染め",dyedAtV:"京都・岩井染工",technique:"技法",handMarkL:"手の跡",handMarkV:"左・つま先の折り返し",keeper:"持ち主",unclaimed:"持ち主を待っています",token:"トークン",tokenV:"発行予定",backNote:"この一足の記録が登録されるまでの見本です。",tapFlip:"切手をタップすると、裏返ります",close:"閉じる",
+ filmNum:"できるまで",mute:"消音",sound:"音を出す",replay:"もう一度",endc:"この反から{ord}番目 · 2026年11月18日 染め上がり",
  pairEd:"この一足、<br>ほかにはない",handMark:"手の跡",handMarkP:"つま先で鼻緒が折り返すところに、明るい藍がのぞいています。機械では生まれない跡です。",sample:"岩井染工がこの反を記録するまでの見本データです。",
  pattern:"柄",kikuT:"菊 · 唐草",kikuP:"菊も唐草も、縁起がよいとされてきたモチーフです。その二つを組み合わせた文様です。",
  stencil:"型紙",stencilP:"柿渋を塗った和紙に模様を彫り、その型で染める。これが「型友禅」です。彫った型紙を生地にのせ、へらで色をのせて模様を写していきます。",workshop:"工房",
@@ -448,7 +451,12 @@ const COUNTRY_CODES=["JP","CO","US","GB","FR","DE","IT","ES","PT","NL","BE","CH"
 let L="en";
 try{const s=localStorage.getItem("kk-lang");if(s==="en"||s==="ja")L=s;else if((navigator.language||"").toLowerCase().startsWith("ja"))L="ja"}catch(e){if((navigator.language||"").toLowerCase().startsWith("ja"))L="ja"}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const t=(k,v)=>{let s=(T[L][k]??T.en[k]??k);if(v)for(const x in v)s=s.split("{"+x+"}").join(esc(v[x]));return s};
+const EN_ORD=["","first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth","eleventh","twelfth","thirteenth","fourteenth","fifteenth","sixteenth","seventeenth","eighteenth","nineteenth","twentieth"];
+const EN_NUM=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"];
+const kan=n=>{const d="〇一二三四五六七八九";if(n<10)return d[n];const t=Math.floor(n/10),o=n%10;return (t>1?d[t]:"")+"十"+(o?d[o]:"")};
+const nth=n=>n+(n%100>10&&n%100<14?"th":["th","st","nd","rd"][n%10]||"th");
+function numv(){const n=ITEM.no,o=ITEM.of;return L==="ja"?{ord:kan(n),Ord:kan(n),ofw:kan(o),nth:n+"番目",of:o,no:n}:{ord:EN_ORD[n]||nth(n),Ord:(EN_ORD[n]||nth(n)).replace(/^./,c=>c.toUpperCase()),ofw:EN_NUM[o]||o,nth:nth(n),of:o,no:n}}
+const t=(k,v)=>{let s=(T[L][k]??T.en[k]??k);if(v)for(const x in v)s=s.split("{"+x+"}").join(esc(v[x]));const g=numv();return s.replace(/\{(ord|Ord|ofw|nth|of|no)\}/g,(_,x)=>g[x])};
 const cname=(code,lang)=>{try{return new Intl.DisplayNames([lang||L],{type:"region"}).of(code)}catch(e){return code}};
 function applyLang(root){
   document.documentElement.lang=L;
@@ -460,18 +468,34 @@ function applyLang(root){
 }
 const V=o=>esc(JSON.stringify(o));
 /* who is reading: the owner once stamped, or the person a gift is addressed to */
-function who(){return S.status==="claimed"?S.keeper:S.status==="gift"?S.gift.to:""}
+function who(){return S.status==="claimed"?(MINE?S.keeper:""):S.status==="gift"?S.gift.to:""}
 
 /* ---------- state ---------- */
-const ITEM={no:7,of:17};
+let ITEM={no:7,of:17,token:"",chain:""};
+/* one row per pair in Supabase; the chip carries ?id=WLK-0001. No id means the local demo. */
+const SB={url:"https://esnvjzgrkhqhgzqbfawr.supabase.co",key:"sb_publishable_f-B4-08rftN4eVQvnG4IDg_iJHXCLdw"};
+const PID=(new URLSearchParams(location.search).get("id")||"").toUpperCase().replace(/[^A-Z0-9-]/g,"").slice(0,20);
+let MINE=!PID;
+async function rpc(fn,args){
+  const r=await fetch(SB.url+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:SB.key,Authorization:"Bearer "+SB.key,"Content-Type":"application/json"},body:JSON.stringify(args)});
+  const j=await r.json().catch(()=>null);
+  if(!r.ok){const e=new Error((j&&j.message)||"net");throw e}
+  return j;
+}
+function fromRow(r){
+  ITEM={no:r.pair_no,of:r.of_total,token:r.token_id||"",chain:r.token_chain||""};
+  S={status:r.status,keeper:r.owner_name||"",cc:r.owner_cc||"",since:r.claimed_at||"",pmDate:r.pm_date||"",gift:{to:r.gift_to||"",msg:r.gift_msg||"",from:r.gift_from||""}};
+  try{MINE=localStorage.getItem("kk-own-"+r.id)==="1"}catch(e){MINE=false}
+}
+const errKey=e=>({bad_code:"errCode",already_claimed:"errTaken",not_found:"errNone"})[e&&e.message]||"errNet";
 const KEY="kk-pair07-v6";
 const G=window.gsap;
 const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(G&&window.SplitText)G.registerPlugin(SplitText);
 const blank=()=>({status:"unclaimed",keeper:"",cc:"",since:"",pmDate:"",gift:{to:"",msg:"",from:""}});
 let S=blank();
-try{const v=JSON.parse(localStorage.getItem(KEY));if(v&&v.status)S=Object.assign(blank(),v)}catch(e){}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+if(!PID)try{const v=JSON.parse(localStorage.getItem(KEY));if(v&&v.status)S=Object.assign(blank(),v)}catch(e){}
+const save=()=>{if(PID)return;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const $=id=>document.getElementById(id);
 const fmt=iso=>{if(!iso)return"";const d=new Date(iso);return L==="ja"?d.getFullYear()+"年"+(d.getMonth()+1)+"月"+d.getDate()+"日":d.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})};
 const daysWith=()=>Math.max(1,Math.floor((Date.now()-new Date(S.since).getTime())/864e5)+1);
@@ -499,6 +523,7 @@ function land(host,name,date,cc,big,done){
   G.fromTo(pm,{opacity:0,scale:big?2.3:1.8,rotate:-18},{opacity:.92,scale:1,rotate:-8,duration:.42,ease:"power4.in",onComplete:()=>{buzz();const st=host.closest(".stamp");if(st)G.fromTo(st,{y:0},{y:5,duration:.08,yoyo:true,repeat:1});done&&setTimeout(done,700)}});
 }
 
+const tokHTML=()=>ITEM.token?`<span class="tokv" title="${esc(ITEM.token)}">${esc((ITEM.chain?ITEM.chain+" · ":"")+(ITEM.token.length>14?ITEM.token.slice(0,6)+"…"+ITEM.token.slice(-4):ITEM.token))}</span>`:`<span data-t="tokenV"></span>`;
 /* one stamp, drawn wherever it is needed */
 function stampHTML(id,mini){
   const claimed=S.status==="claimed";
@@ -510,10 +535,10 @@ function stampHTML(id,mini){
     <div class="r"><span data-t="technique"></span><span class="jp">型友禅</span></div>
     <div class="r"><span data-t="handMarkL"></span><span data-t="handMarkV"></span></div>
     <div class="r"><span data-t="owner"></span><span class="kv">${claimed?esc(S.keeper)+", "+esc(cname(S.cc)):`<span data-t="unclaimed"></span>`}</span></div>
-    <div class="r tok"><span data-t="token"></span><span data-t="tokenV"></span></div>
+    <div class="r tok"><span data-t="token"></span>${tokHTML()}</div>
     <p class="note" data-t="backNote"></p></div></div>`;
   return `<div class="stamp${mini?" mini":""}" id="${id}" ${mini?"":`role="button" tabindex="0" aria-label="Stamp. Tap to turn it over."`}><div class="stamp__flip">
-    <div class="face"><div class="face__in"><img src="img/${mini?"stamp-s":"stamp"}.webp" alt="" decoding="async">${mini?"":`<span class="st-sun"></span><span class="st-jp jp">菊唐草</span><span class="st-cap jp">岩井染工 · KYOTO</span><span class="st-val">7<small>/17</small></span>`}</div></div>${back}
+    <div class="face"><div class="face__in"><img src="img/${mini?"stamp-s":"stamp"}.webp" alt="" decoding="async">${mini?"":`<span class="st-sun"></span><span class="st-jp jp">菊唐草</span><span class="st-cap jp">岩井染工 · KYOTO</span><span class="st-val">${ITEM.no}<small>/${ITEM.of}</small></span>`}</div></div>${back}
   </div><div class="pmh"></div></div>`;
 }
 function stampPm(el,anim,done){
@@ -532,7 +557,7 @@ function bindFlip(el){
 const gate=$("gate");
 let gen=0,dtl=null;
 function resetGate(){gen++;if(dtl){dtl.kill();dtl=null}gate.style.cssText="";gate.classList.remove("gone","form-open","stamped");document.documentElement.classList.add("locked");document.body.classList.add("gating")}
-const gTop=()=>`<div class="g-top t">No. 07 / 17 &nbsp;·&nbsp; <span class="jp">岩井染工 × WLK</span></div>`;
+const gTop=()=>`<div class="g-top t">No. ${String(ITEM.no).padStart(2,"0")} / ${ITEM.of} &nbsp;·&nbsp; <span class="jp">岩井染工 × WLK</span></div>`;
 function gateFirst(){
   resetGate();
   gate.innerHTML=gTop()+`<div class="g-stage">${stampHTML("gStamp")}</div>
@@ -542,19 +567,22 @@ function gateFirst(){
   if(live())G.timeline().from("#gStamp",{y:-200,rotate:-30,opacity:0,duration:1.3,ease:"elastic.out(1,.6)"}).from("#gAsk>*",{opacity:0,y:12,stagger:.08,duration:.6,ease:"expo.out"},"-=.7");
 }
 function formMine(pre,titleKey){
-  gate.classList.add("form-open");
+  gate.classList.add("form-open");const needCode=PID&&S.status==="unclaimed";
   const opts=COUNTRY_CODES.map(c=>({c,n:cname(c)})).sort((a,b)=>a.n.localeCompare(b.n,L)).map(o=>`<option value="${o.c}"${o.c===S.cc?" selected":""}>${esc(o.n)}</option>`).join("");
   $("gAsk").innerHTML=`<h2 data-t="${titleKey||"keeperTitle"}" data-v="${V({n:pre||""})}"></h2><p class="p" data-t="keeperNote"></p>
   <div class="form"><label class="f"><span class="t" data-t="name"></span><input id="nm" autocomplete="given-name" maxlength="24" value="${esc(pre||"")}"></label>
   <label class="f"><span class="t" data-t="country"></span><select id="co"><option value="" disabled ${S.cc?"":"selected"} data-t="choose"></option>${opts}</select></label>
-  <button class="b" id="go" data-t="stampIt"></button><button class="b quiet" id="bk" style="width:100%" data-t="back"></button></div>`;
+  ${needCode?`<label class="f"><span class="t" data-t="codeL"></span><input id="cd" autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" maxlength="8" data-tp="codePH" style="text-transform:uppercase;letter-spacing:.2em"></label>`:""}<p class="err" id="er" role="alert"></p><button class="b" id="go" data-t="stampIt"></button><button class="b quiet" id="bk" style="width:100%" data-t="back"></button></div>`;
   applyLang($("gAsk"));
   if(live())G.from("#gAsk>*",{opacity:0,y:10,stagger:.06,duration:.5,ease:"expo.out"});
   $("bk").onclick=()=>S.status==="gift"?gateRecipient(true):gateFirst();
-  $("go").onclick=()=>{
-    const n=$("nm").value.trim(),c=$("co").value;
-    if(!n){$("nm").focus();return}if(!c){$("co").focus();return}
-    S.status="claimed";S.keeper=n;S.cc=c;S.since=new Date().toISOString();S.pmDate=short();save();
+  $("go").onclick=async()=>{
+    const n=$("nm").value.trim(),c=$("co").value,cd=$("cd")?$("cd").value.trim():"";
+    if(!n){$("nm").focus();return}if(!c){$("co").focus();return}if(needCode&&!cd){$("cd").focus();return}
+    if(PID){const go=$("go");go.disabled=true;go.textContent=t("working");$("er").textContent="";
+      try{fromRow(await rpc("claim_passport",{p_id:PID,p_code:cd,p_name:n,p_cc:c,p_pm:short()}));try{localStorage.setItem("kk-own-"+PID,"1")}catch(e){}MINE=true}
+      catch(e){const k=errKey(e);if(k==="errTaken"){boot();return}$("er").innerHTML=t(k);go.disabled=false;go.textContent=t("stampIt");return}}
+    else{S.status="claimed";S.keeper=n;S.cc=c;S.since=new Date().toISOString();S.pmDate=short();save()}
     $("gAsk").innerHTML=`<h2 data-t="welcome" data-v="${V({n})}"></h2><p class="p" data-t="welcomeSub" data-v="${V({c:cname(c)})}"></p>`;applyLang($("gAsk"));
     gate.classList.remove("form-open");gate.classList.add("stamped");
     const st=$("gStamp")||document.querySelector("#gate .stamp");if(!st.id)st.id="gStamp";
@@ -568,17 +596,21 @@ function formMine(pre,titleKey){
   };
 }
 function formGift(){
-  gate.classList.add("form-open");
+  gate.classList.add("form-open");const needCode=!!PID;
   $("gAsk").innerHTML=`<h2 data-t="giftTitle"></h2><p class="p" data-t="giftNote"></p>
   <div class="form"><label class="f"><span class="t" data-t="forL"></span><input id="to" maxlength="24" data-tp="theirName"></label>
   <label class="f"><span class="t" data-t="message"></span><textarea id="ms" maxlength="600" data-tp="writePH"></textarea></label><div class="count t"><span id="ct">0</span> / 600</div>
   <label class="f"><span class="t" data-t="fromL"></span><input id="fr" maxlength="24" data-tp="yourName"></label>
-  <button class="b" id="go" data-t="seal"></button><button class="b quiet" id="bk" style="width:100%" data-t="back"></button></div>`;
+  ${needCode?`<label class="f"><span class="t" data-t="codeL"></span><input id="cd" autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" maxlength="8" data-tp="codePH" style="text-transform:uppercase;letter-spacing:.2em"></label>`:""}<p class="err" id="er" role="alert"></p><button class="b" id="go" data-t="seal"></button><button class="b quiet" id="bk" style="width:100%" data-t="back"></button></div>`;
   applyLang($("gAsk"));
   $("ms").oninput=e=>$("ct").textContent=e.target.value.length;$("bk").onclick=gateFirst;
-  $("go").onclick=()=>{
-    const to=$("to").value.trim();if(!to){$("to").focus();return}
-    S.status="gift";S.pmDate=short();S.gift={to,msg:$("ms").value.trim(),from:$("fr").value.trim()};save();
+  $("go").onclick=async()=>{
+    const to=$("to").value.trim(),cd=$("cd")?$("cd").value.trim():"";if(!to){$("to").focus();return}if(needCode&&!cd){$("cd").focus();return}
+    const g={to,msg:$("ms").value.trim(),from:$("fr").value.trim()};
+    if(PID){const go=$("go");go.disabled=true;go.textContent=t("working");$("er").textContent="";
+      try{fromRow(await rpc("seal_gift",{p_id:PID,p_code:cd,p_to:g.to,p_msg:g.msg,p_from:g.from,p_pm:short()}))}
+      catch(e){const k=errKey(e);if(k==="errTaken"){boot();return}$("er").innerHTML=t(k);go.disabled=false;go.textContent=t("seal");return}}
+    else{S.status="gift";S.pmDate=short();S.gift=g;save()}
     gate.classList.remove("form-open");
     const stage=document.querySelector(".g-stage");stage.innerHTML=envHTML();stage.style.transform="none";stage.style.margin="0";applyLang(stage);
     $("gAsk").innerHTML=`<h2 data-t="sealedFor" data-v="${V({to})}"></h2><p class="p" data-t="sealedNote"></p>`;applyLang($("gAsk"));
@@ -611,6 +643,27 @@ function gateOwner(){
   applyLang(gate);stampPm($("gStamp"),false);
   if(live())G.from("#gAsk>*",{opacity:0,y:10,stagger:.1,duration:.7,ease:"expo.out"});
   setTimeout(()=>{if(my===gen)dissolve($("gStamp"))},2300);
+}
+
+/* someone else's pair: a view-only record, no claim buttons */
+function gateVisitor(){
+  resetGate();
+  gate.innerHTML=gTop()+`<div class="g-stage">${stampHTML("gStamp")}</div><div class="g-ask" id="gAsk"><h2 data-t="visTitle" data-v="${V({n:S.keeper})}"></h2><p class="p" data-t="visSub" data-v="${V({c:cname(S.cc),d:fmt(S.since),n:S.keeper})}"></p><p class="p" style="font-size:12px" data-t="gHint"></p><div class="choices"><button class="b" id="vgo" data-t="visGo"></button></div></div>`;
+  applyLang(gate);bindFlip($("gStamp"));stampPm($("gStamp"),false);
+  if(live())G.from("#gAsk>*",{opacity:0,y:10,stagger:.08,duration:.7,ease:"expo.out"});
+  $("vgo").onclick=()=>dissolve($("gStamp"));
+}
+function gateMsg(k,retry){
+  resetGate();
+  gate.innerHTML=`<div class="g-ask" id="gAsk" style="margin:auto"><p class="p" data-t="${k}"></p>${retry?`<div class="choices"><button class="b" id="rt" data-t="retry"></button></div>`:""}</div>`;
+  applyLang(gate);if(retry)$("rt").onclick=boot;
+}
+function route(){render();if(S.status==="claimed")MINE?gateOwner():gateVisitor();else if(S.status==="gift")gateRecipient(false);else gateFirst()}
+async function boot(){
+  if(!PID){route();return}
+  resetGate();gate.innerHTML="";
+  try{const r=await rpc("get_passport",{p_id:PID});if(!r){gateMsg("errNone",false);return}fromRow(r);applyLang();route()}
+  catch(e){gateMsg("errNet",true)}
 }
 
 /* the blur lifts; a stamp, if there is one, flies to the corner */
@@ -671,13 +724,17 @@ function drift(){tick=false;const h=innerHeight;par.forEach(el=>{const r=el.pare
 if(!RM)addEventListener("scroll",()=>{if(!tick){tick=true;requestAnimationFrame(drift)}},{passive:true});
 
 /* ---------- the stamp page ---------- */
+function boltMap(){const b=document.querySelector(".pair .bolt");if(!b||b.dataset.k===ITEM.no+"/"+ITEM.of)return;b.dataset.k=ITEM.no+"/"+ITEM.of;
+  const tag=b.querySelector(".tag");b.querySelectorAll(".c").forEach(c=>c.remove());
+  for(let i=ITEM.of;i>=1;i--){const c=document.createElement("i");c.className="c"+(i===ITEM.no?" me":"");c.innerHTML="<span>"+String(i).padStart(2,"0")+"</span>";b.prepend(c)}
+  b.style.setProperty("--of",ITEM.of);b.style.setProperty("--no",ITEM.no);document.querySelector(".pair").style.setProperty("--of",ITEM.of)}
 function render(){
-  applyLang();
+  boltMap();applyLang();
   const k=$("keep");let body="";
   if(S.status==="claimed"){
-    body=`<p class="t" style="color:var(--mute)" data-t="stampPage" data-tn="stampPageN"></p><h2 data-t="claimedTitle" data-v="${V({c:cname(S.cc)})}"></h2>${stampHTML("kStamp")}
-    <div class="rec"><div><span class="t" data-t="owner"></span><span>${esc(S.keeper)}</span></div><div><span class="t" data-t="countryL"></span><span>${esc(cname(S.cc))}</span></div><div><span class="t" data-t="since"></span><span>${esc(fmt(S.since))}</span></div><div><span class="t" data-t="pairL"></span><span data-t="editionV"></span></div><div><span class="t" data-t="token"></span><span data-t="tokenV"></span></div></div>
-    <div class="svc"><button data-svc="repair"><span data-t="repair"></span><span>&rarr;</span></button><button data-svc="again"><span data-t="again"></span><span>&rarr;</span></button></div><p class="closing" data-t="thanksN" data-v="${V({n:S.keeper})}"></p><p class="sign t" data-t="signoff"></p>`;
+    body=`<p class="t" style="color:var(--mute)" data-t="stampPage" ${MINE?'data-tn="stampPageN"':""}></p><h2 data-t="claimedTitle" data-v="${V({c:cname(S.cc)})}"></h2>${stampHTML("kStamp")}
+    <div class="rec"><div><span class="t" data-t="owner"></span><span>${esc(S.keeper)}</span></div><div><span class="t" data-t="countryL"></span><span>${esc(cname(S.cc))}</span></div><div><span class="t" data-t="since"></span><span>${esc(fmt(S.since))}</span></div><div><span class="t" data-t="pairL"></span><span data-t="editionV"></span></div><div><span class="t" data-t="token"></span>${tokHTML()}</div></div>
+    ${MINE?`<div class="svc"><button data-svc="repair"><span data-t="repair"></span><span>&rarr;</span></button><button data-svc="again"><span data-t="again"></span><span>&rarr;</span></button></div><p class="closing" data-t="thanksN" data-v="${V({n:S.keeper})}"></p><p class="sign t" data-t="signoff"></p>`:""}`;
   }else if(S.status==="gift"){
     body=`<p class="t" style="color:var(--mute)" data-t="stampPage"></p><h2 data-t="giftPageTitle"></h2><p class="p" style="color:var(--mute);max-width:30ch;margin:0 auto" data-t="giftPageP" data-v="${V({to:S.gift.to||"—"})}"></p><div class="slot t" data-t="waiting" data-v="${V({to:S.gift.to||"—"})}"></div>`;
   }else{
@@ -713,9 +770,9 @@ document.addEventListener("click",e=>{
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("view").classList.remove("on");$("ns").classList.remove("on")}});
 
 /* start at the right door */
+if(PID)document.body.classList.add("live-item");
 applyLang();
-render();
-if(S.status==="claimed")gateOwner();else if(S.status==="gift")gateRecipient(false);else gateFirst();
+boot();
 document.querySelectorAll("[data-pg]").forEach(p=>io.observe(p));drift();
 }
 </script>
