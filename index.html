@@ -155,7 +155,26 @@ body.gating #lang{right:16px}
 .film .bar{left:20px;right:20px;top:calc(52px + env(safe-area-inset-top));height:2px;background:rgba(239,231,216,.2);z-index:3}
 .film .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--red)}
 
-/* 01 this pair */
+/* 01 the workshop */
+.bio{background:var(--paper);color:var(--ink0)}
+.bio .vname{left:14px;top:calc(9cqh + env(safe-area-inset-top));writing-mode:vertical-rl;font-size:min(17cqw,8.4cqh);line-height:1;letter-spacing:.04em;color:var(--ink0);z-index:2}
+.bio .por{right:0;top:calc(8cqh + env(safe-area-inset-top));width:62cqw;height:38cqh;overflow:hidden;z-index:1;margin:0}
+.bio .por img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.bio .por::after{content:"";position:absolute;left:0;bottom:0;width:38%;height:6px;background:var(--red)}
+.bio .who{right:34px;top:calc(48cqh + env(safe-area-inset-top));text-align:right;width:60cqw}
+.bio .nm{font:500 min(28px,4.2cqh)/1.05 "Bodoni Moda",serif;margin-bottom:4px}
+.bio .who .t{color:rgba(22,20,15,.62);text-transform:none;letter-spacing:.04em;font-size:11px}
+.bio .q{left:20px;right:20px;top:calc(58cqh + env(safe-area-inset-top));margin:0;padding-left:16px;border-left:2px solid var(--red)}
+.bio .q p{font:italic 400 min(18px,2.8cqh)/1.45 "Bodoni Moda","Zen Old Mincho",serif;color:var(--ink0)}
+:lang(ja) .bio .q p{font:400 min(16px,2.5cqh)/1.7 "Zen Old Mincho",serif}
+.bio .q cite{display:block;margin-top:6px;font-style:normal;color:rgba(22,20,15,.55)}
+.bio .body{left:20px;right:20px;bottom:calc(12cqh + env(safe-area-inset-bottom));color:rgba(22,20,15,.8)}
+.bio .facts{left:20px;right:20px;bottom:calc(3cqh + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0;border-top:1px solid rgba(22,20,15,.3);padding-top:8px}
+.bio .facts dt{color:rgba(22,20,15,.55);font-size:9.5px}
+.bio .facts dd{margin:2px 0 0;font:500 12.5px/1.3 "Zen Old Mincho",serif;letter-spacing:0;text-transform:none;color:var(--ink0)}
+@container (max-height:700px){.bio .body{display:none}}
+
+/* 02 this pair */
 .pair{background:var(--paper2)}
 .pair .seven{left:-4cqw;top:2cqh;font:600 min(118cqw,64cqh)/.8 "Bodoni Moda",serif;font-optical-sizing:none;font-variation-settings:"opsz" 28;color:var(--red);letter-spacing:-.04em;z-index:1}
 .pair .of{left:52cqw;top:calc(2cqh + min(52cqw,28cqh));font:500 min(46px,6cqh)/1 "Bodoni Moda",serif;z-index:2}
@@ -252,7 +271,7 @@ html.js .rv{opacity:0}
 </svg>
 
 <div id="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="ja" aria-pressed="false" lang="ja">日本語</button></div>
-<div id="idx" class="t" aria-hidden="true"><span id="idxN">00</span> &nbsp;/&nbsp; 06</div>
+<div id="idx" class="t" aria-hidden="true"><span id="idxN">00</span> &nbsp;/&nbsp; 07</div>
 
 <main>
 <!-- 00 the film -->
@@ -265,11 +284,22 @@ html.js .rv{opacity:0}
   <p class="endc t" id="endT" data-t="endc"></p>
 </section>
 
-<!-- 01 this pair -->
-<section class="pg pair paper" data-pg="01" aria-label="This pair">
+<!-- 01 the workshop -->
+<section class="pg bio" data-pg="01" aria-label="The workshop">
+  <p class="num t rv">01 &nbsp; <span data-t="bioNum"></span></p>
+  <div class="vname boku jp" aria-hidden="true">岩井染工</div>
+  <figure class="por rv"><img src="img/dyer.webp" loading="lazy" decoding="async" alt=""></figure>
+  <div class="who rv"><p class="nm">Iwai <i>Senkou</i></p><p class="t" data-t="bioSub"></p></div>
+  <blockquote class="q rv"><p data-t="bioQuote"></p><cite class="t" data-t="bioCite"></cite></blockquote>
+  <p class="body p rv" data-t="bioBody"></p>
+  <dl class="facts t rv"><div><dt data-t="fFounded"></dt><dd data-t="fFoundedV"></dd></div><div><dt data-t="fDyes"></dt><dd data-t="fDyesV"></dd></div><div><dt data-t="fColour"></dt><dd data-t="fColourV"></dd></div></dl>
+</section>
+
+<!-- 02 this pair -->
+<section class="pg pair paper" data-pg="02" aria-label="This pair">
   <div class="seven" aria-hidden="true" data-par=".08">7</div>
   <div class="of rv" aria-hidden="true">/ 17</div>
-  <p class="num t rv">01</p>
+  <p class="num t rv">02</p>
   <p class="ed t rv" data-t="pairEd"></p>
   <div class="hm rv"><i data-t="handMark"></i><p class="p" data-t="handMarkP"></p></div>
   <div class="eye rv"><img src="img/closeup.webp" loading="lazy" decoding="async" alt=""></div>
@@ -282,9 +312,9 @@ html.js .rv{opacity:0}
 </section>
 
 <!-- 02 kiku -->
-<section class="pg paper kiku" data-pg="02" aria-label="The pattern">
+<section class="pg paper kiku" data-pg="03" aria-label="The pattern">
   <div class="g" aria-hidden="true" data-par="-.1"><img src="img/g-kiku.webp" alt="" loading="lazy" decoding="async"></div>
-  <p class="num t rv">02</p>
+  <p class="num t rv">03</p>
   <p class="meta t rv" data-t="pattern"></p>
   <div class="v boku jp rv" aria-hidden="true">唐草</div>
   <div class="note rv"><p class="t" style="margin-bottom:8px" data-t="kikuT"></p><p class="p" data-t="kikuP"></p></div>
@@ -292,27 +322,27 @@ html.js .rv{opacity:0}
 </section>
 
 <!-- 03 kata -->
-<section class="pg kata" data-pg="03" aria-label="The stencil">
+<section class="pg kata" data-pg="04" aria-label="The stencil">
   <div class="ph"><img src="img/stencils.webp" loading="lazy" decoding="async" alt=""></div>
   <div class="g" aria-hidden="true" data-par=".14"><img src="img/g-kata.webp" alt="" loading="lazy" decoding="async"></div>
-  <p class="num t rv">03</p>
+  <p class="num t rv">04</p>
   <div class="note rv"><p class="t" data-t="stencil"></p><span class="boku jp">型紙</span><p class="p" style="color:var(--paper)" data-t="stencilP"></p></div>
   <div class="inset rv"><img src="img/workshop.webp" loading="lazy" decoding="async" alt=""><p class="t" data-t="workshop"></p></div>
 </section>
 
 <!-- 04 iro -->
-<section class="pg iro" data-pg="04" aria-label="The colour">
+<section class="pg iro" data-pg="05" aria-label="The colour">
   <div class="block" aria-hidden="true"></div>
   <div class="g" aria-hidden="true" data-par="-.12"><img src="img/g-iro.webp" alt="" loading="lazy" decoding="async"></div>
-  <p class="meta t rv">04 &nbsp; <span data-t="colour"></span></p>
+  <p class="meta t rv">05 &nbsp; <span data-t="colour"></span></p>
   <div class="ph rv"><img src="img/paste.webp" loading="lazy" decoding="async" alt=""></div>
   <div class="note rv"><span class="boku jp">色</span><p class="p" data-t="colourP"></p></div>
 </section>
 
 <!-- 05 the shoes -->
-<section class="pg ed5 paper" data-pg="05" aria-label="Hanao shoes">
+<section class="pg ed5 paper" data-pg="06" aria-label="Hanao shoes">
   <div class="band" aria-hidden="true"></div>
-  <p class="num t rv">05</p>
+  <p class="num t rv">06</p>
   <h2 class="hd rv">HANAO<span></span>SHOES</h2>
   <p class="col p rv" data-t="shoesP"></p>
   <div class="ph rv"><img src="img/shoes.webp" loading="lazy" decoding="async" alt=""></div>
@@ -320,7 +350,7 @@ html.js .rv{opacity:0}
 </section>
 
 <!-- 06 the stamp page -->
-<section class="pg keep" id="keep" data-pg="06" aria-live="polite"></section>
+<section class="pg keep" id="keep" data-pg="07" aria-live="polite"></section>
 </main>
 
 <footer>
@@ -340,6 +370,7 @@ html.js .rv{opacity:0}
 /* ---------- words, in two languages ---------- */
 const T={
 en:{
+ bioNum:"The workshop",bioSub:"Kata-yuzen kimono dyers in Kyoto, for more than a century",bioQuote:"“For this one, we tried dyeing it in deep blue and light blue to suit the texture and feel of the pattern.”",bioCite:"Iwai Senkou, on this strap",bioBody:"Known for komon, small repeating patterns, and for delicate designs. They still dye with the techniques handed down since their founding. Many of their patterns are simple, and they see that simplicity as their strength.",fFounded:"Founded",fFoundedV:"Early Meiji era",fDyes:"They dye",fDyesV:"Kimono and obi",fColour:"Colour",fColourV:"Mixed by hand",
  gTitle:"Is this pair <i>yours?</i>",gHint:"Tap the stamp to turn it over.",mine:"It's mine",gift:"It's a gift",show:"Show me how it was made",
  keeperTitle:"Become its <i>keeper</i>",keeperNote:"Your name and country go on the entry stamp, like a passport.",name:"Name",country:"Country",choose:"Choose",stampIt:"Stamp it",back:"Back",
  welcome:"Welcome, <i>{n}</i>",welcomeSub:"Kyoto to {c}. Pair 7 of 17 is yours.",
@@ -363,6 +394,7 @@ en:{
  demoMsg:"I walked past this shop in Kyoto and thought of you.\nSomeone dyed this by hand, one board at a time.\nWear it everywhere."
 },
 ja:{
+ bioNum:"工房",bioSub:"明治初期から百年以上、型友禅で着物を染めてきた京都の老舗",bioQuote:"「今回、柄の風合いから濃いブルーと淡いブルーで染めてみました。」",bioCite:"岩井染工、この鼻緒について",bioBody:"得意なのは小紋柄で、紋様の繊細さが特徴です。創業当時からの技術を受け継ぎ、変わらない染め方で着物を染めています。柄はシンプルなものが多く、岩井染工はそれを強みにしています。",fFounded:"創業",fFoundedV:"明治初期",fDyes:"染めるもの",fDyesV:"着物と帯",fColour:"色合わせ",fColourV:"職人の手合わせ",
  gTitle:"この一足は、<i>あなたのものですか?</i>",gHint:"切手をタップすると、裏返ります。",mine:"自分のものです",gift:"贈りものです",show:"できるまでを見る",
  keeperTitle:"この一足の<i>持ち主</i>に",keeperNote:"お名前と国が、パスポートのように入国スタンプに押されます。",name:"お名前",country:"国",choose:"選択してください",stampIt:"スタンプを押す",back:"戻る",
  welcome:"ようこそ、<i>{n}</i>さん",welcomeSub:"京都から{c}へ。17足のうち7足目は、あなたのものです。",
@@ -611,7 +643,7 @@ function render(){
   }else{
     body=`<p class="t" style="color:var(--mute)" data-t="stampPage"></p><h2 data-t="unclTitle"></h2><p class="p" style="color:var(--mute);max-width:28ch;margin:0 auto" data-t="unclP"></p><div class="slot t" data-t="slot"></div><div class="btns"><button class="b" data-act="mine" data-t="mine"></button><button class="b ghost" data-act="gift" data-t="gift"></button></div>`;
   }
-  k.innerHTML=`<p class="num t">06</p><div class="frame">${body}</div>`;
+  k.innerHTML=`<p class="num t">07</p><div class="frame">${body}</div>`;
   applyLang(k);
   const ks=$("kStamp");if(ks){bindFlip(ks);stampPm(ks,false)}
 }
