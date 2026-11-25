@@ -9,6 +9,10 @@ Static site, no build step. Vercel deploys `main` as is.
 - `fonts/`: subset WOFF2 fonts (only the characters the page uses; re-subset with pyftsubset if you add new kanji)
 - `lib/`: GSAP 3.15 and SplitText
 
+Bilingual (EN / 日本語): all words live in the `T` object in index.html; the switch is top right, and Japanese is the default on phones set to Japanese. Plate texts in Japanese come from Kazu's WLK page copy; the interface lines are drafts for the Kyoto members to check.
+
+Every page is exactly one screen tall (100dvh, container query units, mandatory scroll snap).
+
 Flows: first tap (mine / gift / show me), gift recipient, returning owner. State lives in localStorage (key `kk-pair07-v5`); the footer has demo buttons to switch flows.
 
 Photographs belong to Whole Love Kyoto, lent for Demo Day only. Remove them after Demo Day.

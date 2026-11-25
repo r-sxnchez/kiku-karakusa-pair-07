@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kiku Karakusa, Pair 07</title>
 <link rel="preload" href="fonts/bodoni.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/zen-kaku.woff2" as="font" type="font/woff2" crossorigin>
@@ -13,19 +13,20 @@
 <style>
 /* VOICE: a Kyoto print shop. Confident, few words, set with care.
    IDEA: a passport for one pair. The tap opens at a border desk: a stamp, a question, and an entry stamp with the keeper's name and country.
-   PICTURE: the engraved stamp held sharp over a blurred page; then the making in stills; then printed plates with one huge brushed character each.
-   COLOUR and TYPE: sumi, aged paper, vermilion, the strap's Prussian indigo. Yuji Boku brush dried by a filter; Bodoni Moda numerals; Zen Kaku Gothic small print.
-   LAYOUT: one composition per screen; something huge beside something tiny. The stamp rides in the corner like a stamp on a letter. */
+   PICTURE: the engraved stamp held sharp over a blurred page; then the workshop film; then printed plates with one huge brushed character each.
+   COLOUR and TYPE: sumi, aged paper, vermilion, the strap's Prussian indigo. Yuji Boku brush; Bodoni Moda numerals; Zen Kaku Gothic small print; Zen Old Mincho for reading, in English and Japanese.
+   LAYOUT: every page is exactly one phone screen (container units scale each plate to the screen it is on); one page at a time. */
 @font-face{font-family:"Bodoni Moda";src:url(fonts/bodoni.woff2) format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Bodoni Moda";src:url(fonts/bodoni-italic.woff2) format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
 @font-face{font-family:"Yuji Boku";src:url(fonts/yuji-boku.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Yuji Syuku";src:url(fonts/yuji-syuku.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Zen Old Mincho";src:url(fonts/zen-old-mincho.woff2) format("woff2");font-weight:400 700;font-display:swap}
 @font-face{font-family:"Zen Kaku Gothic New";src:url(fonts/zen-kaku.woff2) format("woff2");font-weight:400 700;font-display:swap}
-:root{color-scheme:dark;--sumi:#121110;--sumi2:#1c1a17;--paper:#efe7d8;--paper2:#e4d8c2;--ink0:#16140f;--red:#c43a2c;--indigo:#1f3a68;--mute:rgba(239,231,216,.62);--line0:rgba(239,231,216,.18);--ease:cubic-bezier(.2,.8,.2,1)}
+:root{color-scheme:dark;--sumi:#121110;--sumi2:#1c1a17;--paper:#efe7d8;--paper2:#e4d8c2;--ink0:#16140f;--red:#c43a2c;--indigo:#1f3a68;--mute:rgba(239,231,216,.62);--line0:rgba(239,231,216,.18);--ease:cubic-bezier(.2,.8,.2,1);--vh:100vh}
+@supports(height:100dvh){:root{--vh:100dvh}}
 :root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0;margin:0}
-html{scroll-snap-type:y proximity}
+html{scroll-snap-type:y mandatory;overscroll-behavior-y:none}
 html.locked{overflow:hidden}
 body{background:var(--sumi);color:var(--paper);font:14px/1.7 "Zen Old Mincho",serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
 body::after{content:"";position:fixed;inset:0;z-index:95;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -33,12 +34,22 @@ img{display:block;max-width:100%}
 button,select,input,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px}
+:lang(ja){font-feature-settings:"palt" 1}
+:lang(ja) i{font-style:normal}
 .jp{font-feature-settings:"palt" 1}
 .boku{font-family:"Yuji Boku","Yuji Syuku",serif;font-weight:400;line-height:.9}
 .g{line-height:0;will-change:transform}.g img{width:calc(var(--fs)*1.2);max-width:none;margin:calc(var(--fs)*-.1)}
 .t{font:500 10.5px/1.55 "Zen Kaku Gothic New",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+:lang(ja) .t{letter-spacing:.08em}
 .p{font:400 13.5px/1.75 "Zen Old Mincho",serif}
+:lang(ja) .p{font-size:13px;line-height:1.85}
 .seal{display:inline-grid;place-items:center;width:38px;height:38px;background:var(--red);color:var(--paper);font:400 24px/1 "Yuji Boku",serif;border-radius:3px;box-shadow:inset 0 0 0 2px var(--red),inset 0 0 0 3px rgba(239,231,216,.65);transform:rotate(-4deg)}
+
+/* language switch */
+#lang{position:fixed;top:calc(16px + env(safe-area-inset-top));right:84px;z-index:85;display:flex;border:1px solid var(--line0);background:rgba(18,17,16,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+body.gating #lang{right:16px}
+#lang button{min-width:44px;min-height:34px;padding:0 10px;border:0;background:none;color:var(--mute);font:500 11px/1 "Zen Kaku Gothic New",sans-serif;letter-spacing:.08em}
+#lang button[aria-pressed=true]{color:var(--paper);background:var(--red)}
 
 /* the stamp */
 .stamp{--w:266px;--h:336px;position:relative;width:var(--w);height:var(--h);perspective:1200px}
@@ -55,10 +66,12 @@ button{cursor:pointer}
 .st-cap{position:absolute;left:12px;bottom:12px;background:var(--paper);padding:3px 7px;font:500 10px/1.2 "Zen Kaku Gothic New",sans-serif;letter-spacing:.14em;color:var(--indigo)}
 .st-sun{position:absolute;right:14px;top:14px;width:22px;height:22px;border-radius:50%;background:var(--red)}
 .back{padding:20px 20px;display:grid;align-content:start;gap:2px;color:var(--ink0)}
-.back h4{font:600 italic 22px/1.1 "Bodoni Moda",serif;color:var(--indigo);margin-bottom:8px;display:flex;justify-content:space-between;align-items:baseline}
+.back h4{font:600 italic 22px/1.1 "Bodoni Moda","Zen Old Mincho",serif;color:var(--indigo);margin-bottom:8px;display:flex;justify-content:space-between;align-items:baseline}
+:lang(ja) .back h4{font:700 19px/1.1 "Zen Old Mincho",serif}
 .back h4 span{font:700 9px/1 "Zen Kaku Gothic New",sans-serif;letter-spacing:.14em;font-style:normal;color:var(--paper);background:var(--red);padding:4px 6px}
 .back .r{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed rgba(22,20,15,.25);font-size:12.5px}
-.back .r span:first-child{font:500 9.5px/2 "Zen Kaku Gothic New",sans-serif;letter-spacing:.1em;color:rgba(22,20,15,.6)}
+.back .r span:first-child{font:500 9.5px/2 "Zen Kaku Gothic New",sans-serif;letter-spacing:.1em;color:rgba(22,20,15,.6);text-transform:uppercase;flex:none}
+.back .r span:last-child{text-align:right}
 .back .tok span:last-child{font:500 10px/2 "Zen Kaku Gothic New",sans-serif;letter-spacing:.06em;color:var(--indigo)}
 .back .note{margin-top:8px;font-size:10.5px;color:rgba(22,20,15,.55)}
 .pm{position:absolute;pointer-events:none;width:210px;height:126px;left:40%;top:28%;opacity:0;color:var(--red)}
@@ -66,59 +79,66 @@ button{cursor:pointer}
 .pmh{transition:opacity .3s}.stamp.is-back .pmh{opacity:0}
 
 /* the border desk */
-#gate{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 22px 26px;background:rgba(14,13,12,.62);-webkit-backdrop-filter:blur(22px) saturate(.7);backdrop-filter:blur(22px) saturate(.7);overflow:auto;will-change:opacity}
+#gate{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(56px + env(safe-area-inset-top)) 22px calc(22px + env(safe-area-inset-bottom));background:rgba(14,13,12,.62);-webkit-backdrop-filter:blur(22px) saturate(.7);backdrop-filter:blur(22px) saturate(.7);overflow:auto;will-change:opacity}
 #gate.gone{display:none}
-.g-top{position:absolute;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;color:var(--mute)}
-.g-stage{position:relative;transform:rotate(-3deg)}
-.g-ask{margin-top:26px;text-align:center;width:100%;max-width:340px}
-.g-ask h2{font:500 30px/1.08 "Bodoni Moda",serif;margin-bottom:6px}
+.g-top{position:absolute;top:calc(22px + env(safe-area-inset-top));left:20px;color:var(--mute)}
+.g-stage{position:relative;transform:rotate(-3deg) scale(var(--gk,1));margin:calc((var(--gk,1) - 1) * 168px) 0;flex:none}
+.g-ask{margin-top:22px;text-align:center;width:100%;max-width:340px;flex:none}
+.g-ask h2{font:500 30px/1.1 "Bodoni Moda","Zen Old Mincho",serif;margin-bottom:6px}
+:lang(ja) .g-ask h2{font:700 24px/1.4 "Zen Old Mincho",serif}
 .g-ask h2 i{font-weight:400}
 .g-ask .p{color:var(--mute)}
-.choices{display:grid;gap:9px;margin-top:20px}
-.b{min-height:52px;border:1px solid var(--red);background:var(--red);color:var(--paper);font:500 12.5px/1 "Zen Kaku Gothic New",sans-serif;letter-spacing:.18em;text-transform:uppercase;transition:transform 150ms var(--ease),background-color 150ms}
+.choices{display:grid;gap:9px;margin-top:18px}
+.b{min-height:50px;border:1px solid var(--red);background:var(--red);color:var(--paper);font:500 12.5px/1.2 "Zen Kaku Gothic New",sans-serif;letter-spacing:.16em;text-transform:uppercase;transition:transform 150ms var(--ease),background-color 150ms}
+:lang(ja) .b{letter-spacing:.1em;font-size:13.5px}
 .b.ghost{background:none;border-color:var(--line0)}
 .b.quiet{background:none;border-color:transparent;color:var(--mute);min-height:44px}
 @media(hover:hover) and (pointer:fine){.b:hover{transform:translateY(-1px);background:#a93024}.b.ghost:hover,.b.quiet:hover{background:rgba(239,231,216,.06)}}
 .b:active{transform:translateY(1px) scale(.985)}
 .form{text-align:left}
-.f{display:block;margin-top:14px}
+.f{display:block;margin-top:12px}
 .f span{display:block;margin-bottom:2px;color:var(--mute)}
-.f input,.f select,.f textarea{width:100%;font:16px/1.5 "Zen Old Mincho",serif;color:var(--paper);background:transparent;border:0;border-bottom:1px solid rgba(239,231,216,.35);border-radius:0;padding:9px 2px;appearance:none;-webkit-appearance:none}
+.f input,.f select,.f textarea{width:100%;font:16px/1.5 "Zen Old Mincho",serif;color:var(--paper);background:transparent;border:0;border-bottom:1px solid rgba(239,231,216,.35);border-radius:0;padding:8px 2px;appearance:none;-webkit-appearance:none}
 .f select{background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23efe7d8'/%3E%3C/svg%3E") no-repeat right 4px center}
 .f select option{color:#111}
 .f input:focus,.f select:focus,.f textarea:focus{outline:none;border-bottom-color:var(--red)}
-.f textarea{min-height:110px;resize:vertical;background:repeating-linear-gradient(transparent 0 31px,rgba(196,58,44,.35) 31px 32px);line-height:32px;padding-top:0}
+.f textarea{min-height:96px;resize:vertical;background:repeating-linear-gradient(transparent 0 31px,rgba(196,58,44,.35) 31px 32px);line-height:32px;padding-top:0}
 .count{text-align:right;color:var(--mute);margin-top:2px}
-.form .b{width:100%;margin-top:20px}
-/* envelope, for gifts */
+.form .b{width:100%;margin-top:18px}
 .env{position:relative;width:min(300px,80vw);aspect-ratio:1.5;border:0;padding:0;background:none;display:block;cursor:pointer;perspective:900px}
 .env .bk{position:absolute;inset:0;background:#e2d7c2;box-shadow:0 30px 60px rgba(0,0,0,.6)}
 .env .front{position:absolute;inset:0;background:var(--paper);clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%);z-index:3}
 .env .flap{position:absolute;left:0;right:0;top:0;height:56%;background:#ddd1ba;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0;z-index:4;backface-visibility:hidden}
 .env .sheetp{position:absolute;left:7%;right:7%;top:8%;bottom:8%;background:#f8f3ea;z-index:2}
-.env .to{position:absolute;bottom:16px;left:20px;z-index:5;color:var(--ink0);font:italic 500 22px "Bodoni Moda",serif;text-align:left}
+.env .to{position:absolute;bottom:16px;left:20px;z-index:5;color:var(--ink0);font:italic 500 22px "Bodoni Moda","Zen Old Mincho",serif;text-align:left}
+:lang(ja) .env .to{font:700 17px "Zen Old Mincho",serif}
 .env .mini{position:absolute;right:14px;bottom:14px;z-index:6}
 .mini{--w:56px;--h:70px}
 .mini .face{filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));background-size:6px 6px;background-image:radial-gradient(circle at center,transparent 1.7px,var(--paper) 2px);background-position:-3px -3px}
 .mini .face__in{inset:4px}
 .mini .face__in::after{inset:2px}
 .mini .pm{width:92px;height:55px;left:-30px;top:6px}
-.letter{max-width:30ch;margin:28px auto 0;font:400 18px/1.9 "Zen Old Mincho",serif;white-space:pre-line;text-align:center}
-.letter-from{margin-top:12px;font:italic 500 22px "Bodoni Moda",serif;color:var(--red);text-align:center}
-.welcome{text-align:center;margin-top:26px}
-.welcome h2{font:500 34px/1.05 "Bodoni Moda",serif}
-.welcome h2 i{font-weight:400}
+.letter{max-width:30ch;margin:24px auto 0;font:400 18px/1.9 "Zen Old Mincho",serif;white-space:pre-line;text-align:center}
+.letter-from{margin-top:10px;font:italic 500 22px "Bodoni Moda","Zen Old Mincho",serif;color:var(--red);text-align:center}
+.welcome h2{font:500 32px/1.1 "Bodoni Moda","Zen Old Mincho",serif}
+/* the gate shrinks the stamp to fit short screens */
+@media(max-height:780px){#gate{--gk:.86}}
+@media(max-height:700px){#gate{--gk:.74}.g-ask h2{font-size:26px}.choices{gap:7px;margin-top:14px}.b{min-height:46px}}
+@media(max-height:620px){#gate{--gk:.6}.g-ask{margin-top:14px}.g-ask .p{display:none}}
+@media(max-height:540px){#gate{--gk:.5}}
+#gate.form-open{--gk:.5}
+@media(max-height:700px){#gate.form-open{--gk:.4}}
 
 /* the stamp in the corner, like on a letter */
-#chip{position:fixed;top:14px;right:14px;z-index:60;border:0;background:none;padding:0;transform:rotate(4deg);opacity:0;pointer-events:none;transition:opacity .4s}
+#chip{position:fixed;top:calc(14px + env(safe-area-inset-top));right:14px;z-index:60;border:0;background:none;padding:0;transform:rotate(4deg);opacity:0;pointer-events:none;transition:opacity .4s}
 #chip.on{opacity:1;pointer-events:auto}
-#view{position:fixed;inset:0;z-index:75;display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:rgba(14,13,12,.7);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+#view{position:fixed;inset:0;z-index:75;display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:rgba(14,13,12,.7);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
 #view.on{display:flex}
 
-/* pages */
-.pg{position:relative;height:100svh;min-height:660px;overflow:hidden;scroll-snap-align:start}
+/* pages: each one exactly the phone's screen */
+.pg{position:relative;height:var(--vh);overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;container-type:size}
 .pg>*{position:absolute}
-.num{top:20px;left:20px;z-index:5}
+.num{top:calc(20px + env(safe-area-inset-top));left:20px;z-index:5}
 .paper{background:var(--paper);color:var(--ink0)}
 .paper .p{color:rgba(22,20,15,.82)}
 #idx{position:fixed;right:10px;top:50%;z-index:50;writing-mode:vertical-rl;transform:translateY(-50%);mix-blend-mode:difference;color:#efe7d8;pointer-events:none}
@@ -128,114 +148,121 @@ button{cursor:pointer}
 .film video{inset:0;width:100%;height:100%;object-fit:cover;background:#000}
 @media(min-aspect-ratio:3/4){.film video{object-fit:contain}}
 .film .shade{inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 78%,rgba(0,0,0,.55));z-index:2;pointer-events:none}
-.film .ctl{left:20px;top:64px;z-index:3;display:flex;gap:8px}
+.film .ctl{left:20px;top:calc(64px + env(safe-area-inset-top));z-index:3;display:flex;gap:8px}
 .film .rep{border:1px solid var(--line0);background:rgba(0,0,0,.35);min-height:40px;padding:0 12px;white-space:nowrap;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.film .endc{left:20px;bottom:28px;z-index:3;color:var(--paper);background:rgba(18,17,16,.82);padding:9px 12px;opacity:0;transition:opacity .8s}
+.film .endc{left:20px;bottom:calc(28px + env(safe-area-inset-bottom));z-index:3;color:var(--paper);background:rgba(18,17,16,.82);padding:9px 12px;opacity:0;transition:opacity .8s}
 .film.done .endc{opacity:1}
-.film .bar{left:20px;right:20px;top:52px;height:2px;background:rgba(239,231,216,.2);z-index:3}
+.film .bar{left:20px;right:20px;top:calc(52px + env(safe-area-inset-top));height:2px;background:rgba(239,231,216,.2);z-index:3}
 .film .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--red)}
+
 /* 01 this pair */
 .pair{background:var(--paper2)}
-.pair .seven{left:-4vw;top:3svh;font:400 min(118vw,520px)/.8 "Bodoni Moda",serif;color:var(--red);letter-spacing:-.04em;z-index:1}
-.pair .of{left:52vw;top:calc(3svh + min(52vw,230px));font:500 46px/1 "Bodoni Moda",serif;z-index:2}
-.pair .ed{right:30px;top:96px;text-align:right}
-.pair .eye{right:-14vw;bottom:-5svh;width:min(64vw,290px);aspect-ratio:1;border-radius:50%;overflow:hidden;z-index:2;box-shadow:0 0 0 2px var(--red),0 0 0 9px var(--paper2),0 0 0 10px var(--red)}
+.pair .seven{left:-4cqw;top:2cqh;font:600 min(118cqw,64cqh)/.8 "Bodoni Moda",serif;font-optical-sizing:none;font-variation-settings:"opsz" 28;color:var(--red);letter-spacing:-.04em;z-index:1}
+.pair .of{left:52cqw;top:calc(2cqh + min(52cqw,28cqh));font:500 min(46px,6cqh)/1 "Bodoni Moda",serif;z-index:2}
+.pair .ed{right:30px;top:calc(96px + env(safe-area-inset-top));text-align:right}
+.pair .eye{right:-14cqw;bottom:-5cqh;width:min(62cqw,32cqh);aspect-ratio:1;border-radius:50%;overflow:hidden;z-index:2;box-shadow:0 0 0 2px var(--red),0 0 0 9px var(--paper2),0 0 0 10px var(--red)}
 .pair .eye img{position:absolute;width:230%;height:230%;max-width:none;left:-6%;top:-118%;object-fit:cover}
-.pair .ledger{left:20px;bottom:30px;width:46%;z-index:3}
-.pair .ledger div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid rgba(22,20,15,.3);padding:6px 0}
-.pair .ledger b{font:500 13px/1.5 "Zen Old Mincho",serif;text-transform:none;letter-spacing:0;color:var(--ink0)}
-.pair .hm{left:20px;top:calc(3svh + min(96vw,420px));width:52%;z-index:3}
-.pair .hm i{display:block;font:italic 500 26px/1.1 "Bodoni Moda",serif;margin-bottom:6px}
-.sample{margin-top:10px;font:400 10px/1.5 "Zen Kaku Gothic New",sans-serif;color:rgba(22,20,15,.5);letter-spacing:.06em}
+.pair .ledger{left:20px;bottom:calc(4cqh + env(safe-area-inset-bottom));width:46cqw;z-index:3}
+.pair .ledger div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid rgba(22,20,15,.3);padding:5px 0}
+.pair .ledger b{font:500 13px/1.5 "Zen Old Mincho",serif;text-transform:none;letter-spacing:0;color:var(--ink0);text-align:right}
+.pair .hm{left:20px;top:calc(2cqh + min(94cqw,51cqh));width:54cqw;z-index:3}
+.pair .hm i{display:block;font:italic 500 min(26px,3.6cqh)/1.1 "Bodoni Moda","Zen Old Mincho",serif;margin-bottom:6px}
+:lang(ja) .pair .hm i{font:700 min(20px,3cqh)/1.2 "Zen Old Mincho",serif}
+.sample{margin-top:8px;font:400 10px/1.5 "Zen Kaku Gothic New",sans-serif;color:rgba(22,20,15,.5);letter-spacing:.04em;text-transform:none}
 
 /* 02 kiku */
-.kiku .g{right:-30vw;top:-2svh;--fs:min(140vw,600px);z-index:1}
-.kiku .v{left:22px;top:70px;writing-mode:vertical-rl;font-size:58px;color:var(--ink0);z-index:2}
-.kiku .note{left:22px;bottom:30px;width:56%;z-index:2}
-.kiku .seal{right:34px;bottom:36px;z-index:2}
-.kiku .meta{right:30px;top:96px;text-align:right;z-index:3;background:var(--paper);padding:0 4px}
+.kiku .g{right:-30cqw;top:-2cqh;--fs:min(140cqw,72cqh);z-index:1}
+.kiku .v{left:22px;top:max(70px,9cqh);writing-mode:vertical-rl;font-size:min(58px,8cqh);color:var(--ink0);z-index:2}
+.kiku .note{left:22px;bottom:calc(4cqh + env(safe-area-inset-bottom));width:58cqw;z-index:2}
+.kiku .seal{right:34px;bottom:calc(4cqh + env(safe-area-inset-bottom));z-index:2}
+.kiku .meta{right:30px;top:calc(96px + env(safe-area-inset-top));text-align:right;z-index:3;background:var(--paper);padding:0 4px}
 
 /* 03 kata */
 .kata{background:var(--sumi)}
 .kata .ph{inset:0}
 .kata .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.78)}
-.kata .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,17,16,.55),rgba(18,17,16,0) 35%,rgba(18,17,16,.2) 60%,rgba(18,17,16,.85))}
-.kata .g{left:-8vw;bottom:-6svh;--fs:min(112vw,500px);z-index:2}
-.kata .note{right:30px;top:96px;width:52%;text-align:right;z-index:3}
-.kata .note .boku{display:block;font-size:30px;color:var(--red);margin:10px 0 6px}
-.kata .inset{right:30px;top:40%;width:34%;z-index:3}
-.kata .inset img{aspect-ratio:3/4;object-fit:cover;width:100%;border:6px solid var(--paper)}
-.kata .inset .t{margin-top:8px;text-align:right}
+.kata .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,17,16,.6),rgba(18,17,16,0) 38%,rgba(18,17,16,.2) 60%,rgba(18,17,16,.85))}
+.kata .g{left:-8cqw;bottom:-6cqh;--fs:min(112cqw,56cqh);z-index:2}
+.kata .note{right:30px;top:calc(96px + env(safe-area-inset-top));width:54cqw;text-align:right;z-index:3}
+.kata .note .boku{display:block;font-size:min(30px,4.5cqh);color:var(--red);margin:8px 0 6px}
+.kata .inset{right:30px;top:max(46cqh,calc(96px + env(safe-area-inset-top) + 190px));width:min(34cqw,20cqh);z-index:3}
+.kata .inset img{aspect-ratio:3/4;object-fit:cover;width:100%;border:5px solid var(--paper)}
+.kata .inset .t{margin-top:6px;text-align:right}
 
 /* 04 iro */
 .iro{background:var(--paper)}
-.iro .block{left:0;right:0;top:0;height:56%;background:var(--red)}
-.iro .g{right:-14vw;top:-4svh;--fs:min(108vw,470px);z-index:2}
-.iro .ph{left:20px;top:41%;width:64%;z-index:3;box-shadow:0 30px 50px rgba(0,0,0,.25)}
+.iro .block{left:0;right:0;top:0;height:56cqh;background:var(--red)}
+.iro .g{right:-14cqw;top:-4cqh;--fs:min(108cqw,54cqh);z-index:2}
+.iro .ph{left:20px;top:40cqh;width:min(62cqw,38cqh);z-index:3;box-shadow:0 30px 50px rgba(0,0,0,.25)}
 .iro .ph img{aspect-ratio:4/5;object-fit:cover;width:100%}
-.iro .note{right:30px;bottom:34px;width:30%;z-index:3;color:var(--ink0)}
-.iro .note .boku{display:block;font-size:30px;color:var(--red);margin-bottom:6px}
-.iro .meta{left:20px;top:20px;color:var(--paper);z-index:3}
+.iro .note{right:30px;bottom:calc(4cqh + env(safe-area-inset-bottom));width:30cqw;z-index:3;color:var(--ink0)}
+.iro .note .boku{display:block;font-size:min(30px,4.5cqh);color:var(--red);margin-bottom:6px}
+.iro .meta{left:20px;top:calc(20px + env(safe-area-inset-top));color:var(--paper);z-index:3}
 
 /* 05 the shoes */
 .ed5{background:var(--paper)}
 .ed5 .band{right:0;top:0;bottom:0;width:16px;background:var(--red)}
-.ed5 .hd{left:20px;top:58px;font:500 50px/1.02 "Bodoni Moda",serif;letter-spacing:.06em}
-.ed5 .hd span{display:block;width:34px;height:2px;background:var(--ink0);margin:10px 0}
-.ed5 .col{left:20px;top:196px;width:72%}
-.ed5 .ph{left:20px;right:44px;top:max(42%,300px);bottom:96px;overflow:hidden;background:#e6e3de}
+.ed5 .hd{left:20px;top:7cqh;font:500 min(50px,6.4cqh)/1.02 "Bodoni Moda",serif;letter-spacing:.06em}
+.ed5 .hd span{display:block;width:34px;height:2px;background:var(--ink0);margin:min(10px,1.2cqh) 0}
+.ed5 .col{left:20px;top:calc(7cqh + min(50px,6.4cqh)*2.1 + 2.4cqh + 14px);width:74cqw}
+.ed5 .ph{left:20px;right:44px;top:max(40cqh,calc(7cqh + min(50px,6.4cqh)*2.1 + 2.4cqh + 100px));bottom:calc(13cqh + env(safe-area-inset-bottom));overflow:hidden;background:#e6e3de}
 .ed5 .ph img{width:100%;height:100%;object-fit:cover}
-.ed5 .care{left:20px;right:44px;bottom:24px;display:flex;gap:14px;align-items:flex-start}
+.ed5 .care{left:20px;right:44px;bottom:calc(2cqh + env(safe-area-inset-bottom));display:flex;gap:14px;align-items:flex-start}
 .ed5 .care .boku{font-size:22px;color:var(--red);flex:none;line-height:1.1}
-.ed5 .care .p{font-size:12px;line-height:1.6}
+.ed5 .care .p{font-size:11.5px;line-height:1.55}
 
 /* 06 the stamp page */
-.keep{background:var(--sumi);height:auto;min-height:100svh;padding:70px 20px 40px}
+.keep{background:var(--sumi);height:auto;min-height:var(--vh);padding:calc(70px + env(safe-area-inset-top)) 20px 40px;container-type:normal}
 .keep>*{position:relative}
 .keep .num{position:absolute}
-.keep .frame{border:1px dashed var(--line0);padding:28px 20px 30px;max-width:420px;margin:0 auto;text-align:center;position:relative}
+.keep .frame{border:1px dashed var(--line0);padding:26px 20px 28px;max-width:420px;margin:0 auto;text-align:center;position:relative}
 .keep .frame::before,.keep .frame::after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--red)}
 .keep .frame::before{left:-2px;top:-2px;border-right:0;border-bottom:0}
 .keep .frame::after{right:-2px;bottom:-2px;border-left:0;border-top:0}
-.keep h2{font:500 38px/1.04 "Bodoni Moda",serif;margin:14px 0 10px}
+.keep h2{font:500 36px/1.06 "Bodoni Moda","Zen Old Mincho",serif;margin:12px 0 10px}
+:lang(ja) .keep h2{font:700 26px/1.4 "Zen Old Mincho",serif}
 .keep h2 i{font-weight:400}
-.slot{width:200px;height:252px;margin:26px auto 0;border:1px dashed rgba(239,231,216,.35);display:grid;place-items:center;color:var(--mute)}
-.keep .stamp{margin:26px auto 0;transform:rotate(3deg) scale(.82);transform-origin:50% 0;margin-bottom:-60px}
-.keep .btns{display:grid;gap:10px;margin:24px auto 0;max-width:320px}
+.slot{width:200px;height:252px;margin:24px auto 0;border:1px dashed rgba(239,231,216,.35);display:grid;place-items:center;color:var(--mute)}
+@media(max-height:700px){.slot{width:150px;height:190px}}
+@media(max-height:600px){.slot{width:110px;height:140px;margin-top:16px}.keep h2{font-size:30px}}
+.keep .stamp{margin:24px auto 0;transform:rotate(3deg) scale(.82);transform-origin:50% 0;margin-bottom:-60px}
+.keep .btns{display:grid;gap:10px;margin:22px auto 0;max-width:320px}
 .rec{margin:22px auto 0;max-width:320px;text-align:left}
 .rec div{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line0);font-size:14px}
 .svc{display:grid;gap:8px;margin:22px auto 0;max-width:320px;text-align:left}
 .svc button{display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:0 16px;border:1px solid var(--line0);background:none;font-size:14px}
-footer{background:var(--sumi);padding:30px 20px 50px;color:var(--mute);border-top:1px solid var(--line0)}
+footer{background:var(--sumi);padding:30px 20px calc(50px + env(safe-area-inset-bottom));color:var(--mute);border-top:1px solid var(--line0);scroll-snap-align:end}
 footer .demo{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 footer .demo button{min-height:44px;padding:0 12px;border:1px dashed var(--line0);background:none;font:500 11px/1 "Zen Kaku Gothic New",sans-serif;letter-spacing:.1em}
-.note-sheet{position:fixed;left:16px;right:16px;bottom:16px;z-index:80;max-width:420px;margin:0 auto;background:var(--paper);color:var(--ink0);padding:20px;transform:translateY(130%);transition:transform .45s var(--ease)}
+.note-sheet{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:80;max-width:420px;margin:0 auto;background:var(--paper);color:var(--ink0);padding:20px;transform:translateY(130%);transition:transform .45s var(--ease)}
 .note-sheet.on{transform:none}
-.note-sheet h3{font:500 26px/1.1 "Bodoni Moda",serif;margin-bottom:6px}
+.note-sheet h3{font:500 26px/1.15 "Bodoni Moda","Zen Old Mincho",serif;margin-bottom:6px}
 .note-sheet .b{width:100%;margin-top:14px}
+
+/* short screens: shrink the small print a step */
+@container (max-height:640px){.p{font-size:12px;line-height:1.6}:lang(ja) .p{font-size:11.5px;line-height:1.7}.ed5 .care .p{font-size:10.5px}}
 
 html.js .rv{opacity:0}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html.js .rv{opacity:1}}
-@media(max-height:720px){#gate .stamp:not(.mini){--k:.78}.g-stage{transform:rotate(-3deg) scale(.8);margin:-30px 0}}
-@media(min-width:700px){.pg{min-height:760px}.kiku .g{right:-4vw}}
 </style>
 </head>
-<body>
+<body class="gating">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <filter id="rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter>
 </svg>
 
+<div id="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="ja" aria-pressed="false" lang="ja">日本語</button></div>
 <div id="idx" class="t" aria-hidden="true"><span id="idxN">00</span> &nbsp;/&nbsp; 06</div>
 
 <main>
-<!-- 00 the film: how this pair was made -->
+<!-- 00 the film -->
 <section class="pg film" data-pg="00" aria-label="How this pair was made">
   <video id="vid" src="img/film.mp4" poster="img/poster.webp" playsinline preload="none" aria-label="Iwai Senkou dyeing the Kiku Karakusa fabric, 27 seconds"></video>
   <div class="shade" aria-hidden="true"></div>
   <div class="bar" aria-hidden="true"><i id="bar"></i></div>
-  <p class="num t">00 &nbsp; How it was made</p>
-  <div class="ctl"><button class="rep t" id="snd" aria-label="Sound on or off">Mute</button><button class="rep t" id="rep">Replay</button></div>
-  <p class="endc t" id="endT">Pair 7 of 17 · finished 18 XI 2026</p>
+  <p class="num t">00 &nbsp; <span data-t="filmNum"></span></p>
+  <div class="ctl"><button class="rep t" id="snd"></button><button class="rep t" id="rep" data-t="replay"></button></div>
+  <p class="endc t" id="endT" data-t="endc"></p>
 </section>
 
 <!-- 01 this pair -->
@@ -243,14 +270,14 @@ html.js .rv{opacity:0}
   <div class="seven" aria-hidden="true" data-par=".08">7</div>
   <div class="of rv" aria-hidden="true">/ 17</div>
   <p class="num t rv">01</p>
-  <p class="ed t rv">This pair<br>and no other</p>
-  <div class="hm rv"><i>The hand mark</i><p class="p">Where the strap folds at the toe, a fleck of brighter indigo shows through. A machine would not leave it.</p></div>
-  <div class="eye rv"><img src="img/closeup.webp" loading="lazy" decoding="async" alt="Magnified detail of the strap at the toe fold"></div>
+  <p class="ed t rv" data-t="pairEd"></p>
+  <div class="hm rv"><i data-t="handMark"></i><p class="p" data-t="handMarkP"></p></div>
+  <div class="eye rv"><img src="img/closeup.webp" loading="lazy" decoding="async" alt=""></div>
   <div class="ledger t rv">
-    <div><span>Edition</span><b>7 of 17</b></div>
-    <div><span>Finished</span><b>18 Nov 2026</b></div>
-    <div><span>Technique</span><b class="jp">型友禅</b></div>
-    <p class="sample">Sample data until this exact pair is recorded.</p>
+    <div><span data-t="edition"></span><b data-t="editionV"></b></div>
+    <div><span data-t="finished"></span><b data-t="finishedShort"></b></div>
+    <div><span data-t="technique"></span><b class="jp">型友禅</b></div>
+    <p class="sample" data-t="sample"></p>
   </div>
 </section>
 
@@ -258,28 +285,28 @@ html.js .rv{opacity:0}
 <section class="pg paper kiku" data-pg="02" aria-label="The pattern">
   <div class="g" aria-hidden="true" data-par="-.1"><img src="img/g-kiku.webp" alt="" loading="lazy" decoding="async"></div>
   <p class="num t rv">02</p>
-  <p class="meta t rv">The pattern</p>
+  <p class="meta t rv" data-t="pattern"></p>
   <div class="v boku jp rv" aria-hidden="true">唐草</div>
-  <div class="note rv"><p class="t" style="margin-bottom:8px">Kiku · Karakusa</p><p class="p">Chrysanthemum and arabesque vine, both long held as good omens, joined in one pattern: a wish for long life, and for things to keep growing.</p></div>
+  <div class="note rv"><p class="t" style="margin-bottom:8px" data-t="kikuT"></p><p class="p" data-t="kikuP"></p></div>
   <span class="seal jp rv" aria-hidden="true">菊</span>
 </section>
 
 <!-- 03 kata -->
 <section class="pg kata" data-pg="03" aria-label="The stencil">
-  <div class="ph"><img src="img/stencils.webp" loading="lazy" decoding="async" alt="Stencil papers stacked on shelves, a craftsman working behind"></div>
+  <div class="ph"><img src="img/stencils.webp" loading="lazy" decoding="async" alt=""></div>
   <div class="g" aria-hidden="true" data-par=".14"><img src="img/g-kata.webp" alt="" loading="lazy" decoding="async"></div>
   <p class="num t rv">03</p>
-  <div class="note rv"><p class="t">The stencil</p><span class="boku jp">型紙</span><p class="p" style="color:var(--paper)">A pattern carved into washi paper coated with persimmon tannin, laid on the cloth, and the colour pressed through with a spatula.</p></div>
-  <div class="inset rv"><img src="img/workshop.webp" loading="lazy" decoding="async" alt="The Iwai Senkou workshop and its long dyeing boards"><p class="t jp">工房 · The workshop</p></div>
+  <div class="note rv"><p class="t" data-t="stencil"></p><span class="boku jp">型紙</span><p class="p" style="color:var(--paper)" data-t="stencilP"></p></div>
+  <div class="inset rv"><img src="img/workshop.webp" loading="lazy" decoding="async" alt=""><p class="t" data-t="workshop"></p></div>
 </section>
 
 <!-- 04 iro -->
 <section class="pg iro" data-pg="04" aria-label="The colour">
   <div class="block" aria-hidden="true"></div>
   <div class="g" aria-hidden="true" data-par="-.12"><img src="img/g-iro.webp" alt="" loading="lazy" decoding="async"></div>
-  <p class="meta t rv">04 &nbsp; The colour</p>
-  <div class="ph rv"><img src="img/paste.webp" loading="lazy" decoding="async" alt="A hand stirring dye paste in a bowl"></div>
-  <div class="note rv"><span class="boku jp">色</span><p class="p">Matched by the craftsman's own sense, deciding how much dye to add as he goes.</p></div>
+  <p class="meta t rv">04 &nbsp; <span data-t="colour"></span></p>
+  <div class="ph rv"><img src="img/paste.webp" loading="lazy" decoding="async" alt=""></div>
+  <div class="note rv"><span class="boku jp">色</span><p class="p" data-t="colourP"></p></div>
 </section>
 
 <!-- 05 the shoes -->
@@ -287,9 +314,9 @@ html.js .rv{opacity:0}
   <div class="band" aria-hidden="true"></div>
   <p class="num t rv">05</p>
   <h2 class="hd rv">HANAO<span></span>SHOES</h2>
-  <p class="col p rv">A hanao strap from Kyoto set on a MOONSTAR sneaker made in Kurume. The strap changes by hand, no tools, to suit the day.</p>
-  <div class="ph rv"><img src="img/shoes.webp" loading="lazy" decoding="async" alt="Black HANAO SHOES with the Kiku Karakusa strap"></div>
-  <div class="care rv"><span class="boku jp">お手入れ</span><p class="p">Inside the hanao are cotton and stencil paper, and water takes their shape away. On rainy days, or when you wash the shoes, take the hanao off first.</p></div>
+  <p class="col p rv" data-t="shoesP"></p>
+  <div class="ph rv"><img src="img/shoes.webp" loading="lazy" decoding="async" alt=""></div>
+  <div class="care rv"><span class="boku jp">お手入れ</span><p class="p" data-t="careP"></p></div>
 </section>
 
 <!-- 06 the stamp page -->
@@ -297,8 +324,8 @@ html.js .rv{opacity:0}
 </main>
 
 <footer>
-  <p class="t">Photographs courtesy of Whole Love Kyoto, lent for this prototype only. Text based on Iwai Senkou and WLK materials.</p>
-  <div class="demo"><button data-demo="reset">First tap (unclaimed)</button><button data-demo="gift">Gift recipient</button><button data-demo="owner">Returning owner</button></div>
+  <p class="t" style="text-transform:none" data-t="credit"></p>
+  <div class="demo"><button data-demo="reset" data-t="demoFirst"></button><button data-demo="gift" data-t="demoGift"></button><button data-demo="owner" data-t="demoOwner"></button></div>
 </footer>
 
 <button id="chip" aria-label="Open this pair's stamp"></button>
@@ -310,39 +337,101 @@ html.js .rv{opacity:0}
 <script src="lib/SplitText.min.js"></script>
 <script>
 {
+/* ---------- words, in two languages ---------- */
+const T={
+en:{
+ gTitle:"Is this pair <i>yours?</i>",gHint:"Tap the stamp to turn it over.",mine:"It's mine",gift:"It's a gift",show:"Show me how it was made",
+ keeperTitle:"Become its <i>keeper</i>",keeperNote:"Your name and country go on the entry stamp, like a passport.",name:"Name",country:"Country",choose:"Choose",stampIt:"Stamp it",back:"Back",
+ welcome:"Welcome, <i>{n}</i>",welcomeSub:"Kyoto to {c}. Pair 7 of 17 is yours.",
+ giftTitle:"A letter <i>inside</i>",giftNote:"The first thing they see when they tap the pair.",forL:"For",theirName:"Their name",message:"Message",writePH:"Write it as you would on paper",fromL:"From",yourName:"Your name",seal:"Seal and stamp it",
+ sealedFor:"Sealed for <i>{to}</i>",sealedNote:"When they tap the pair, your letter opens first. Once opened, it can't be changed.",envFor:"For {to}",
+ letterWaiting:"A letter is waiting. Tap to open.",letterFrom:"from {f}",receive:"Receive it",lookFirst:"Show me how it was made first",receiveTitle:"Receive it as <i>its keeper</i>",
+ welcomeBack:"Welcome back, <i>{n}</i>",welcomeBackSub:"Pair 7 of 17 · kept since {d}",
+ thisPair:"This pair",authentic:"Authentic piece",edition:"Edition",editionV:"7 of 17",finished:"Finished",finishedLong:"18 November 2026",finishedShort:"18 Nov 2026",dyedAt:"Dyed at",dyedAtV:"岩井染工, Kyoto",technique:"Technique",handMarkL:"Hand mark",handMarkV:"Toe fold, left",keeper:"Keeper",unclaimed:"Unclaimed",token:"Token",tokenV:"To be issued",backNote:"Sample record until this exact pair is logged.",tapFlip:"Tap the stamp to turn it over",close:"Close",
+ filmNum:"How it was made",mute:"Mute",sound:"Sound",replay:"Replay",endc:"Pair 7 of 17 · finished 18 XI 2026",
+ pairEd:"This pair<br>and no other",handMark:"The hand mark",handMarkP:"Where the strap folds at the toe, a fleck of brighter indigo shows through. A machine would not leave it.",sample:"Sample data until this exact pair is recorded.",
+ pattern:"The pattern",kikuT:"Kiku · Karakusa",kikuP:"Chrysanthemum and arabesque vine, both long held as good omens, joined in one pattern: a wish for long life, and for things to keep growing.",
+ stencil:"The stencil",stencilP:"A pattern carved into washi paper coated with persimmon tannin, laid on the cloth, and the colour pressed through with a spatula.",workshop:"工房 · The workshop",
+ colour:"The colour",colourP:"Matched by the craftsman's own sense, deciding how much dye to add as he goes.",
+ shoesP:"A hanao strap from Kyoto set on a MOONSTAR sneaker made in Kurume. The strap changes by hand, no tools, to suit the day.",
+ careP:"Inside the hanao are cotton and stencil paper, and water takes their shape away. On rainy days, or when you wash the shoes, take the hanao off first.",
+ stampPage:"The stamp page",claimedTitle:"Kyoto to <i>{c}</i>",countryL:"Country",since:"Since",pairL:"Pair",repair:"Send it back to the workshop for care",again:"Ask Iwai Senkou for another piece",
+ giftPageTitle:"Sealed, <i>and on its way</i>",giftPageP:"{to} will open your letter with one tap, then stamp it with their own name and country.",waiting:"Waiting for {to}",
+ unclTitle:"Yours, or <i>someone else's?</i>",unclP:"A name and a country are stamped onto this pair. Nothing to buy here.",slot:"Entry stamp here",
+ repairH:"Care at <i>the workshop</i>",repairB:"A worn strap can go back to the hands that dyed it. This opens once Iwai Senkou agrees to take repairs.",againH:"Another piece <i>by the same hands</i>",againB:"A request goes straight to the workshop, so the next commission pays the maker. This opens once Iwai Senkou agrees.",understood:"Understood",
+ credit:"Film and photographs courtesy of Whole Love Kyoto, lent for this prototype only. Text based on Iwai Senkou and WLK materials.",demoFirst:"First tap (unclaimed)",demoGift:"Gift recipient",demoOwner:"Returning owner",
+ demoMsg:"I walked past this shop in Kyoto and thought of you.\nSomeone dyed this by hand, one board at a time.\nWear it everywhere."
+},
+ja:{
+ gTitle:"この一足は、<i>あなたのものですか?</i>",gHint:"切手をタップすると、裏返ります。",mine:"自分のものです",gift:"贈りものです",show:"できるまでを見る",
+ keeperTitle:"この一足の<i>持ち主</i>に",keeperNote:"お名前と国が、パスポートのように入国スタンプに押されます。",name:"お名前",country:"国",choose:"選択してください",stampIt:"スタンプを押す",back:"戻る",
+ welcome:"ようこそ、<i>{n}</i>さん",welcomeSub:"京都から{c}へ。17足のうち7足目は、あなたのものです。",
+ giftTitle:"なかに<i>手紙</i>を",giftNote:"相手が靴をタップすると、最初にこの手紙が開きます。",forL:"宛名",theirName:"相手のお名前",message:"メッセージ",writePH:"紙に書くように、どうぞ",fromL:"差出人",yourName:"あなたのお名前",seal:"封をして、スタンプを押す",
+ sealedFor:"<i>{to}</i>さんへ、封をしました",sealedNote:"靴をタップすると、まずこの手紙が開きます。一度開くと、書き換えはできません。",envFor:"{to}さんへ",
+ letterWaiting:"手紙が届いています。タップして開いてください。",letterFrom:"{f}より",receive:"受け取る",lookFirst:"先に、できるまでを見る",receiveTitle:"<i>持ち主</i>として受け取る",
+ welcomeBack:"おかえりなさい、<i>{n}</i>さん",welcomeBackSub:"17足のうち7足目 · {d}から",
+ thisPair:"この一足",authentic:"正規品",edition:"限定番号",editionV:"17足中7足目",finished:"仕上がり",finishedLong:"2026年11月18日",finishedShort:"2026.11.18",dyedAt:"染め",dyedAtV:"京都・岩井染工",technique:"技法",handMarkL:"手の跡",handMarkV:"左・つま先の折り返し",keeper:"持ち主",unclaimed:"まだいません",token:"トークン",tokenV:"発行予定",backNote:"この一足の記録が登録されるまでの見本です。",tapFlip:"切手をタップすると、裏返ります",close:"閉じる",
+ filmNum:"できるまで",mute:"消音",sound:"音を出す",replay:"もう一度",endc:"17足中7足目 · 2026年11月18日 仕上げ",
+ pairEd:"この一足、<br>ほかにはない",handMark:"手の跡",handMarkP:"つま先で鼻緒が折り返すところに、明るい藍がのぞいています。機械では生まれない跡です。",sample:"この一足が記録されるまでの見本データです。",
+ pattern:"柄",kikuT:"菊 · 唐草",kikuP:"菊も唐草も、縁起がよいとされてきたモチーフです。その二つを組み合わせた文様です。",
+ stencil:"型紙",stencilP:"柿渋を塗った和紙に模様を彫り、その型で染める。これが「型友禅」です。彫った型紙を生地にのせ、へらで色をのせて模様を写していきます。",workshop:"工房",
+ colour:"色",colourP:"色の合わせ方は職人の感覚です。染料をどれくらい入れるかを見ながら、色を決めていきます。",
+ shoesP:"草履や下駄にすげられてきた鼻緒を、スニーカーにすげました。スニーカーは久留米のMOONSTAR、鼻緒は日本の職人の手仕事です。",
+ careP:"鼻緒の中には綿と型紙が入っていて、水に濡れると形が崩れます。雨の日や靴を洗うときは、鼻緒を外してください。",
+ stampPage:"スタンプのページ",claimedTitle:"京都から<i>{c}</i>へ",countryL:"国",since:"いつから",pairL:"一足",repair:"工房にお手入れを頼む",again:"岩井染工に、別の一品を頼む",
+ giftPageTitle:"封をしました",giftPageP:"{to}さんがタップすると手紙が開き、ご自身の名前と国でスタンプを押します。",waiting:"{to}さんを待っています",
+ unclTitle:"あなたのもの? <i>それとも贈りもの?</i>",unclP:"この一足に、名前と国がスタンプされます。ここで買うものはありません。",slot:"ここに入国スタンプ",
+ repairH:"<i>工房</i>でのお手入れ",repairB:"傷んだ鼻緒を、染めた職人のもとへ戻せます。岩井染工が修理を引き受けることに同意したら、利用できるようになります。",againH:"<i>同じ手</i>による、もう一品",againB:"依頼は工房へ直接届き、次の仕事の対価は職人に支払われます。岩井染工が同意したら、利用できるようになります。",understood:"わかりました",
+ credit:"映像・写真: Whole Love Kyoto 提供(この試作のためにお借りしています)。文章は岩井染工と WLK の資料をもとにしています。",demoFirst:"最初のタップ(未登録)",demoGift:"贈られた人",demoOwner:"戻ってきた持ち主",
+ demoMsg:"京都でこのお店の前を通って、あなたを思い出しました。\n一枚ずつ、手で染めたものです。\nどこへでも履いていってね。"
+}};
+const COUNTRY_CODES=["JP","CO","US","GB","FR","DE","IT","ES","PT","NL","BE","CH","AT","SE","NO","DK","FI","IE","PL","CZ","GR","TR","IL","AE","SA","IN","PK","BD","CN","HK","TW","KR","SG","TH","VN","MY","ID","PH","AU","NZ","CA","MX","GT","CR","PA","CU","DO","PR","VE","EC","PE","BO","CL","AR","UY","PY","BR","ZA","NG","KE","EG","MA","GH","ET","RU","UA"];
+let L="en";
+try{const s=localStorage.getItem("kk-lang");if(s==="en"||s==="ja")L=s;else if((navigator.language||"").toLowerCase().startsWith("ja"))L="ja"}catch(e){if((navigator.language||"").toLowerCase().startsWith("ja"))L="ja"}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const t=(k,v)=>{let s=(T[L][k]??T.en[k]??k);if(v)for(const x in v)s=s.split("{"+x+"}").join(esc(v[x]));return s};
+const cname=(code,lang)=>{try{return new Intl.DisplayNames([lang||L],{type:"region"}).of(code)}catch(e){return code}};
+function applyLang(root){
+  document.documentElement.lang=L;
+  (root||document).querySelectorAll("[data-t]").forEach(e=>{e.innerHTML=t(e.dataset.t,e.dataset.v?JSON.parse(e.dataset.v):null)});
+  (root||document).querySelectorAll("[data-tp]").forEach(e=>{e.placeholder=t(e.dataset.tp)});
+  document.querySelectorAll("#lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===L)));
+  sndLabel&&sndLabel();
+}
+const V=o=>esc(JSON.stringify(o));
+
+/* ---------- state ---------- */
 const ITEM={no:7,of:17};
-const KEY="kk-pair07-v5";
+const KEY="kk-pair07-v6";
 const G=window.gsap;
 const RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(G&&window.SplitText)G.registerPlugin(SplitText);
-const COUNTRIES=["Japan","Colombia","United States","United Kingdom","France","Germany","Italy","Spain","Portugal","Netherlands","Belgium","Switzerland","Austria","Sweden","Norway","Denmark","Finland","Ireland","Poland","Czechia","Greece","Turkey","Israel","United Arab Emirates","Saudi Arabia","India","Pakistan","Bangladesh","China","Hong Kong","Taiwan","South Korea","Singapore","Thailand","Vietnam","Malaysia","Indonesia","Philippines","Australia","New Zealand","Canada","Mexico","Guatemala","Costa Rica","Panama","Cuba","Dominican Republic","Puerto Rico","Venezuela","Ecuador","Peru","Bolivia","Chile","Argentina","Uruguay","Paraguay","Brazil","South Africa","Nigeria","Kenya","Egypt","Morocco","Ghana","Ethiopia","Russia","Ukraine","Other"];
-const blank=()=>({status:"unclaimed",keeper:"",country:"",since:"",pmDate:"",gift:{to:"",msg:"",from:""}});
+const blank=()=>({status:"unclaimed",keeper:"",cc:"",since:"",pmDate:"",gift:{to:"",msg:"",from:""}});
 let S=blank();
 try{const v=JSON.parse(localStorage.getItem(KEY));if(v&&v.status)S=Object.assign(blank(),v)}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 const $=id=>document.getElementById(id);
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const today=()=>new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+const fmt=iso=>{if(!iso)return"";const d=new Date(iso);return L==="ja"?d.getFullYear()+"年"+(d.getMonth()+1)+"月"+d.getDate()+"日":d.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})};
 const short=()=>{const d=new Date();return d.getDate()+" "+["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"][d.getMonth()]+" "+d.getFullYear()};
 const buzz=()=>{try{navigator.vibrate&&navigator.vibrate([10,30,24])}catch(e){}};
 const live=()=>G&&!RM;
 let pmN=0;
 
-/* the entry stamp: KYOTO above, the keeper's country below, the name and date in the middle */
-function postmark(name,date,country){
-  const id="pm"+(pmN++);const nm=esc((name||"").toUpperCase().slice(0,14));const co=esc((country||"Kyoto").toUpperCase().slice(0,20));
+/* the entry stamp is always printed in Latin letters, like a real one */
+function postmark(name,date,cc){
+  const id="pm"+(pmN++);const nm=esc((name||"").toUpperCase().slice(0,14));const co=esc((cc?cname(cc,"en"):"Kyoto").toUpperCase().slice(0,20));
   const waves=[0,1,2,3].map(i=>`<path d="M128 ${40+i*14} q10 -6 20 0 t20 0 t20 0 t20 0" fill="none" stroke="currentColor" stroke-width="2.4"/>`).join("");
   return `<svg class="pm" viewBox="0 0 214 126" aria-hidden="true"><g filter="url(#rough)">
     <circle cx="64" cy="63" r="57" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="64" cy="63" r="41" fill="none" stroke="currentColor" stroke-width="1.6"/>
     <path id="${id}a" d="M19 63 A45 45 0 0 1 109 63" fill="none"/><path id="${id}b" d="M14 63 A50 50 0 0 0 114 63" fill="none"/>
     <text font-family="Bodoni Moda,serif" font-weight="700" font-size="11" letter-spacing="3" fill="currentColor"><textPath href="#${id}a" startOffset="50%" text-anchor="middle">KYOTO</textPath></text>
     <text font-family="Bodoni Moda,serif" font-weight="700" font-size="${co.length>12?8:10}" letter-spacing="2" fill="currentColor"><textPath href="#${id}b" startOffset="50%" text-anchor="middle">${co}</textPath></text>
-    ${nm?`<text x="64" y="61" text-anchor="middle" font-family="Bodoni Moda,serif" font-weight="800" font-size="${nm.length>8?9:12}" letter-spacing="1" fill="currentColor">${nm}</text>`:""}
+    ${nm?`<text x="64" y="61" text-anchor="middle" font-family="Bodoni Moda,Zen Old Mincho,serif" font-weight="800" font-size="${nm.length>8?9:12}" letter-spacing="1" fill="currentColor">${nm}</text>`:""}
     <text x="64" y="${nm?77:67}" text-anchor="middle" font-family="Bodoni Moda,serif" font-weight="600" font-size="9" letter-spacing="1.5" fill="currentColor">${esc(date)}</text>${waves}</g></svg>`;
 }
-function land(host,name,date,country,big,done){
+function land(host,name,date,cc,big,done){
   if(!host){done&&done();return}
-  host.innerHTML=postmark(name,date,country);const pm=host.querySelector(".pm");
+  host.innerHTML=postmark(name,date,cc);const pm=host.querySelector(".pm");
   if(!live()){pm.classList.add("on");done&&done();return}
   G.fromTo(pm,{opacity:0,scale:big?2.3:1.8,rotate:-18},{opacity:.92,scale:1,rotate:-8,duration:.42,ease:"power4.in",onComplete:()=>{buzz();const st=host.closest(".stamp");if(st)G.fromTo(st,{y:0},{y:5,duration:.08,yoyo:true,repeat:1});done&&setTimeout(done,700)}});
 }
@@ -351,22 +440,22 @@ function land(host,name,date,country,big,done){
 function stampHTML(id,mini){
   const claimed=S.status==="claimed";
   const back=mini?"":`<div class="face face--back"><div class="face__in back">
-    <h4>This pair <span>Authentic piece</span></h4>
-    <div class="r"><span>EDITION</span><span>7 of 17</span></div>
-    <div class="r"><span>FINISHED</span><span>18 November 2026</span></div>
-    <div class="r"><span>DYED AT</span><span class="jp">岩井染工, Kyoto</span></div>
-    <div class="r"><span>TECHNIQUE</span><span class="jp">型友禅</span></div>
-    <div class="r"><span>HAND MARK</span><span>Toe fold, left</span></div>
-    <div class="r"><span>KEEPER</span><span>${claimed?esc(S.keeper)+", "+esc(S.country):"Unclaimed"}</span></div>
-    <div class="r tok"><span>TOKEN</span><span>To be issued</span></div>
-    <p class="note">Sample record until this exact pair is logged.</p></div></div>`;
-  return `<div class="stamp${mini?" mini":""}" id="${id}" ${mini?"":`role="button" tabindex="0" aria-label="The stamp of this pair. Tap to turn it over."`}><div class="stamp__flip">
+    <h4><b data-t="thisPair"></b> <span data-t="authentic"></span></h4>
+    <div class="r"><span data-t="edition"></span><span data-t="editionV"></span></div>
+    <div class="r"><span data-t="finished"></span><span data-t="finishedLong"></span></div>
+    <div class="r"><span data-t="dyedAt"></span><span class="jp" data-t="dyedAtV"></span></div>
+    <div class="r"><span data-t="technique"></span><span class="jp">型友禅</span></div>
+    <div class="r"><span data-t="handMarkL"></span><span data-t="handMarkV"></span></div>
+    <div class="r"><span data-t="keeper"></span><span class="kv">${claimed?esc(S.keeper)+", "+esc(cname(S.cc)):`<span data-t="unclaimed"></span>`}</span></div>
+    <div class="r tok"><span data-t="token"></span><span data-t="tokenV"></span></div>
+    <p class="note" data-t="backNote"></p></div></div>`;
+  return `<div class="stamp${mini?" mini":""}" id="${id}" ${mini?"":`role="button" tabindex="0" aria-label="Stamp. Tap to turn it over."`}><div class="stamp__flip">
     <div class="face"><div class="face__in"><img src="img/${mini?"stamp-s":"stamp"}.webp" alt="" decoding="async">${mini?"":`<span class="st-sun"></span><span class="st-jp jp">菊唐草</span><span class="st-cap jp">岩井染工 · KYOTO</span><span class="st-val">7<small>/17</small></span>`}</div></div>${back}
   </div><div class="pmh"></div></div>`;
 }
 function stampPm(el,anim,done){
   const h=el.querySelector(".pmh");
-  if(S.status==="claimed")land(h,S.keeper,S.pmDate,S.country,anim,done);
+  if(S.status==="claimed")land(h,S.keeper,S.pmDate,S.cc,anim,done);
   else if(S.status==="gift"&&S.pmDate)land(h,"",S.pmDate,"",anim,done);
   else{h.innerHTML="";done&&done()}
 }
@@ -379,62 +468,68 @@ function bindFlip(el){
 /* ---------- the border desk ---------- */
 const gate=$("gate");
 let gen=0,dtl=null;
-function resetGate(){gen++;if(dtl){dtl.kill();dtl=null}gate.style.cssText="";gate.classList.remove("gone");document.documentElement.classList.add("locked")}
-function gTop(){return `<div class="g-top t"><span>No. 07 / 17</span><span class="jp">岩井染工 × WLK</span></div>`}
+function resetGate(){gen++;if(dtl){dtl.kill();dtl=null}gate.style.cssText="";gate.classList.remove("gone","form-open");document.documentElement.classList.add("locked");document.body.classList.add("gating")}
+const gTop=()=>`<div class="g-top t">No. 07 / 17 &nbsp;·&nbsp; <span class="jp">岩井染工 × WLK</span></div>`;
 function gateFirst(){
   resetGate();
   gate.innerHTML=gTop()+`<div class="g-stage">${stampHTML("gStamp")}</div>
-  <div class="g-ask" id="gAsk"><h2>Is this pair <i>yours?</i></h2><p class="p">Tap the stamp to turn it over.</p>
-  <div class="choices"><button class="b" data-g="mine">It's mine</button><button class="b ghost" data-g="gift">It's a gift</button><button class="b quiet" data-g="show">Show me how it was made</button></div></div>`;
-  bindFlip($("gStamp"));stampPm($("gStamp"),false);
-  if(live())G.timeline().from(".g-stage",{y:-200,rotate:-30,opacity:0,duration:1.3,ease:"elastic.out(1,.6)"}).from("#gAsk>*",{opacity:0,y:12,stagger:.08,duration:.6,ease:"expo.out"},"-=.7");
+  <div class="g-ask" id="gAsk"><h2 data-t="gTitle"></h2><p class="p" data-t="gHint"></p>
+  <div class="choices"><button class="b" data-g="mine" data-t="mine"></button><button class="b ghost" data-g="gift" data-t="gift"></button><button class="b quiet" data-g="show" data-t="show"></button></div></div>`;
+  applyLang(gate);bindFlip($("gStamp"));stampPm($("gStamp"),false);
+  if(live())G.timeline().from("#gStamp",{y:-200,rotate:-30,opacity:0,duration:1.3,ease:"elastic.out(1,.6)"}).from("#gAsk>*",{opacity:0,y:12,stagger:.08,duration:.6,ease:"expo.out"},"-=.7");
 }
-function formMine(pre,title){
-  const opts=COUNTRIES.map(c=>`<option${c===S.country?" selected":""}>${c}</option>`).join("");
-  $("gAsk").innerHTML=`<h2>${title||"Become its <i>keeper</i>"}</h2><p class="p">Your name and country go on the entry stamp, like a passport.</p>
-  <div class="form"><label class="f"><span class="t">Name</span><input id="nm" autocomplete="given-name" maxlength="24" value="${esc(pre||"")}"></label>
-  <label class="f"><span class="t">Country</span><select id="co"><option value="" disabled ${S.country?"":"selected"}>Choose</option>${opts}</select></label>
-  <button class="b" id="go">Stamp it</button><button class="b quiet" id="bk" style="width:100%">Back</button></div>`;
+function formMine(pre,titleKey){
+  gate.classList.add("form-open");
+  const opts=COUNTRY_CODES.map(c=>({c,n:cname(c)})).sort((a,b)=>a.n.localeCompare(b.n,L)).map(o=>`<option value="${o.c}"${o.c===S.cc?" selected":""}>${esc(o.n)}</option>`).join("");
+  $("gAsk").innerHTML=`<h2 data-t="${titleKey||"keeperTitle"}"></h2><p class="p" data-t="keeperNote"></p>
+  <div class="form"><label class="f"><span class="t" data-t="name"></span><input id="nm" autocomplete="given-name" maxlength="24" value="${esc(pre||"")}"></label>
+  <label class="f"><span class="t" data-t="country"></span><select id="co"><option value="" disabled ${S.cc?"":"selected"} data-t="choose"></option>${opts}</select></label>
+  <button class="b" id="go" data-t="stampIt"></button><button class="b quiet" id="bk" style="width:100%" data-t="back"></button></div>`;
+  applyLang($("gAsk"));
   if(live())G.from("#gAsk>*",{opacity:0,y:10,stagger:.06,duration:.5,ease:"expo.out"});
   $("bk").onclick=()=>S.status==="gift"?gateRecipient(true):gateFirst();
   $("go").onclick=()=>{
     const n=$("nm").value.trim(),c=$("co").value;
     if(!n){$("nm").focus();return}if(!c){$("co").focus();return}
-    S.status="claimed";S.keeper=n;S.country=c;S.since=today();S.pmDate=short();save();
-    $("gAsk").innerHTML=`<h2>Welcome, <i>${esc(n)}</i></h2><p class="p">Kyoto to ${esc(c)}. Pair 7 of 17 is yours.</p>`;
-    const st=$("gStamp")||document.querySelector("#gate .stamp");
-    if(!st.id){st.id="gStamp"}
+    S.status="claimed";S.keeper=n;S.cc=c;S.since=new Date().toISOString();S.pmDate=short();save();
+    $("gAsk").innerHTML=`<h2 data-t="welcome" data-v="${V({n})}"></h2><p class="p" data-t="welcomeSub" data-v="${V({c:cname(c)})}"></p>`;applyLang($("gAsk"));
+    gate.classList.remove("form-open");
+    const st=$("gStamp")||document.querySelector("#gate .stamp");if(!st.id)st.id="gStamp";
     const my=gen;stampPm(st,true,()=>{if(my===gen)dissolve(st)});
   };
 }
 function formGift(){
-  $("gAsk").innerHTML=`<h2>A letter <i>inside</i></h2><p class="p">The first thing they see when they tap the pair.</p>
-  <div class="form"><label class="f"><span class="t">For</span><input id="to" maxlength="24" placeholder="Their name"></label>
-  <label class="f"><span class="t">Message</span><textarea id="ms" maxlength="600" placeholder="Write it as you would on paper"></textarea></label><div class="count t"><span id="ct">0</span> / 600</div>
-  <label class="f"><span class="t">From</span><input id="fr" maxlength="24" placeholder="Your name"></label>
-  <button class="b" id="go">Seal and stamp it</button><button class="b quiet" id="bk" style="width:100%">Back</button></div>`;
+  gate.classList.add("form-open");
+  $("gAsk").innerHTML=`<h2 data-t="giftTitle"></h2><p class="p" data-t="giftNote"></p>
+  <div class="form"><label class="f"><span class="t" data-t="forL"></span><input id="to" maxlength="24" data-tp="theirName"></label>
+  <label class="f"><span class="t" data-t="message"></span><textarea id="ms" maxlength="600" data-tp="writePH"></textarea></label><div class="count t"><span id="ct">0</span> / 600</div>
+  <label class="f"><span class="t" data-t="fromL"></span><input id="fr" maxlength="24" data-tp="yourName"></label>
+  <button class="b" id="go" data-t="seal"></button><button class="b quiet" id="bk" style="width:100%" data-t="back"></button></div>`;
+  applyLang($("gAsk"));
   $("ms").oninput=e=>$("ct").textContent=e.target.value.length;$("bk").onclick=gateFirst;
   $("go").onclick=()=>{
     const to=$("to").value.trim();if(!to){$("to").focus();return}
     S.status="gift";S.pmDate=short();S.gift={to,msg:$("ms").value.trim(),from:$("fr").value.trim()};save();
-    const stage=document.querySelector(".g-stage");
-    stage.innerHTML=envHTML();stage.style.transform="none";
-    $("gAsk").innerHTML=`<h2>Sealed for <i>${esc(to)}</i></h2><p class="p">When they tap the pair, your letter opens first. Once opened, it can't be changed.</p>`;
+    gate.classList.remove("form-open");
+    const stage=document.querySelector(".g-stage");stage.innerHTML=envHTML();stage.style.transform="none";stage.style.margin="0";applyLang(stage);
+    $("gAsk").innerHTML=`<h2 data-t="sealedFor" data-v="${V({to})}"></h2><p class="p" data-t="sealedNote"></p>`;applyLang($("gAsk"));
     if(live())G.from("#env",{scale:.6,rotate:-10,opacity:0,duration:1,ease:"elastic.out(1,.7)"});
     const my=gen;setTimeout(()=>{if(my===gen)land(document.querySelector("#env .pmh"),"",S.pmDate,"",false,()=>{if(my===gen)dissolve(null)})},900);
   };
 }
-function envHTML(){return `<button class="env" id="env" aria-label="Open the letter"><span class="bk"></span><span class="sheetp" id="sheetp"></span><span class="front"></span><span class="flap" id="flap"></span><span class="to">For ${esc(S.gift.to||"you")}</span>${stampHTML("eStamp",true)}</button>`}
+const envHTML=()=>`<button class="env" id="env" aria-label="Open the letter"><span class="bk"></span><span class="sheetp" id="sheetp"></span><span class="front"></span><span class="flap" id="flap"></span><span class="to" data-t="envFor" data-v="${V({to:S.gift.to||"—"})}"></span>${stampHTML("eStamp",true)}</button>`;
 function gateRecipient(skipLetter){
   if(!skipLetter)resetGate();
-  gate.innerHTML=gTop()+`<div class="g-stage" style="transform:none">${envHTML()}</div><div class="g-ask" id="gAsk"><p class="t" style="color:var(--mute)">${skipLetter?"":"A letter is waiting. Tap to open."}</p></div>`;
+  gate.classList.remove("form-open");
+  gate.innerHTML=gTop()+`<div class="g-stage" style="transform:none;margin:0">${envHTML()}</div><div class="g-ask" id="gAsk"><p class="t" style="color:var(--mute)" ${skipLetter?"":`data-t="letterWaiting"`}></p></div>`;
+  applyLang(gate);
   land(document.querySelector("#env .pmh"),"",S.pmDate,"",false);
   if(live()&&!skipLetter)G.from("#env",{y:140,rotate:-8,opacity:0,duration:1.3,ease:"elastic.out(1,.7)"});
   const openIt=()=>{
     $("env").onclick=null;buzz();
-    const msg=`<p class="letter" id="lt">${esc(S.gift.msg||"")}</p>${S.gift.from?`<p class="letter-from">from ${esc(S.gift.from)}</p>`:""}<div class="choices"><button class="b" id="rcv">Receive it</button><button class="b quiet" id="lk">Show me how it was made first</button></div>`;
-    $("gAsk").innerHTML=msg;
-    $("rcv").onclick=()=>{document.querySelector(".g-stage").innerHTML=stampHTML("gStamp");document.querySelector(".g-stage").style.transform="rotate(-3deg)";bindFlip($("gStamp"));formMine(S.gift.to,"Receive it as <i>its keeper</i>")};
+    $("gAsk").innerHTML=`<p class="letter" id="lt">${esc(S.gift.msg||"")}</p>${S.gift.from?`<p class="letter-from" data-t="letterFrom" data-v="${V({f:S.gift.from})}"></p>`:""}<div class="choices"><button class="b" id="rcv" data-t="receive"></button><button class="b quiet" id="lk" data-t="lookFirst"></button></div>`;
+    applyLang($("gAsk"));
+    $("rcv").onclick=()=>{const st=document.querySelector(".g-stage");st.innerHTML=stampHTML("gStamp");st.style.transform="";st.style.margin="";applyLang(st);bindFlip($("gStamp"));formMine(S.gift.to,"receiveTitle")};
     $("lk").onclick=()=>dissolve(null);
     if(live()){const sp=SplitText.create("#lt",{type:"lines",mask:"lines"});
       G.timeline({defaults:{ease:"expo.out"}}).to("#flap",{rotateX:180,duration:.9,ease:"power3.inOut"}).to("#sheetp",{yPercent:-46,duration:1,ease:"power3.out"},"-=.35").to("#env",{scale:.82,duration:1},"<").from(sp.lines,{yPercent:105,duration:1.1,stagger:.14},"-=.5").from("#gAsk .letter-from,#gAsk .choices",{opacity:0,y:8,duration:.8,stagger:.15},"-=.4")}
@@ -443,8 +538,8 @@ function gateRecipient(skipLetter){
 }
 function gateOwner(){
   resetGate();const my=gen;
-  gate.innerHTML=gTop()+`<div class="g-stage">${stampHTML("gStamp")}</div><div class="g-ask welcome" id="gAsk"><h2>Welcome back, <i>${esc(S.keeper)}</i></h2><p class="p" style="color:var(--mute)">Pair 7 of 17 · kept since ${esc(S.since)}</p></div>`;
-  stampPm($("gStamp"),false);
+  gate.innerHTML=gTop()+`<div class="g-stage">${stampHTML("gStamp")}</div><div class="g-ask welcome" id="gAsk"><h2 data-t="welcomeBack" data-v="${V({n:S.keeper})}"></h2><p class="p" style="color:var(--mute)" data-t="welcomeBackSub" data-v="${V({d:fmt(S.since)})}"></p></div>`;
+  applyLang(gate);stampPm($("gStamp"),false);
   if(live())G.from("#gAsk>*",{opacity:0,y:10,stagger:.1,duration:.7,ease:"expo.out"});
   setTimeout(()=>{if(my===gen)dissolve($("gStamp"))},2300);
 }
@@ -452,7 +547,7 @@ function gateOwner(){
 /* the blur lifts; a stamp, if there is one, flies to the corner */
 function dissolve(st){
   const my=gen;
-  const fin=()=>{if(my!==gen)return;gate.classList.add("gone");gate.innerHTML="";document.documentElement.classList.remove("locked");gate.style.cssText="";chip();render();playFilm()};
+  const fin=()=>{if(my!==gen)return;gate.classList.add("gone");gate.innerHTML="";document.documentElement.classList.remove("locked");document.body.classList.remove("gating");gate.style.cssText="";chip();render();window.scrollTo({top:0});playFilm()};
   if(!live()){fin();return}
   const tl=dtl=G.timeline({onComplete:fin});
   if(st){const a=st.getBoundingClientRect();const tx=innerWidth-14-56/2-(a.left+a.width/2),ty=14+70/2-(a.top+a.height/2);
@@ -461,26 +556,19 @@ function dissolve(st){
   tl.to(gate,{opacity:0,duration:1.4,ease:"power2.inOut"},.2);
   if(st)tl.to(st,{opacity:0,duration:.2},1.5);
 }
-function chip(){
-  const c=$("chip");c.innerHTML=stampHTML("cStamp",true);stampPm($("cStamp"),false);c.classList.add("on");
-}
-$("chip").onclick=()=>{const v=$("view");v.innerHTML=stampHTML("vStamp")+`<p class="t" style="color:var(--mute)">Tap the stamp to turn it over</p><button class="b ghost" id="vx" style="padding:0 26px">Close</button>`;
-  bindFlip($("vStamp"));stampPm($("vStamp"),false);v.classList.add("on");if(live())G.from("#vStamp",{scale:.3,rotate:20,opacity:0,duration:.8,ease:"elastic.out(1,.7)"});$("vx").onclick=()=>v.classList.remove("on")};
-
-gate.addEventListener("click",e=>{const b=e.target.closest("[data-g]");if(!b)return;
-  if(b.dataset.g==="mine")formMine();else if(b.dataset.g==="gift")formGift();
-  else{const st=$("gStamp"),my=gen;if(live())G.to(st,{y:-innerHeight,rotate:20,duration:.9,ease:"power3.in"});setTimeout(()=>{if(my===gen)dissolve(null)},live()?300:0)}});
+function chip(){const c=$("chip");c.innerHTML=stampHTML("cStamp",true);stampPm($("cStamp"),false);c.classList.add("on")}
+$("chip").onclick=()=>{const v=$("view");v.innerHTML=stampHTML("vStamp")+`<p class="t" style="color:var(--mute)" data-t="tapFlip"></p><button class="b ghost" id="vx" style="padding:0 26px" data-t="close"></button>`;
+  applyLang(v);bindFlip($("vStamp"));stampPm($("vStamp"),false);v.classList.add("on");if(live())G.from("#vStamp",{scale:.3,rotate:20,opacity:0,duration:.8,ease:"elastic.out(1,.7)"});$("vx").onclick=()=>v.classList.remove("on")};
 
 /* ---------- the film ---------- */
 const vid=$("vid");let primed=false;
-const sndLabel=()=>{$("snd").textContent=vid.muted?"Sound":"Mute"};
+var sndLabel=()=>{$("snd").textContent=t(vid.muted?"sound":"mute")};
 function prime(){if(primed)return;primed=true;vid.muted=false;const p=vid.play();if(p&&p.then)p.then(()=>{vid.pause();vid.currentTime=0}).catch(()=>{})}
-gate.addEventListener("click",prime,true);
+gate.addEventListener("click",e=>{if(e.target.closest("button"))prime()},true);
 function playFilm(){
   vid.currentTime=0;vid.parentElement.classList.remove("done");
   if(!primed)vid.muted=true;
-  const p=vid.play();
-  if(p&&p.catch)p.catch(()=>{vid.muted=true;vid.play().catch(()=>{})});
+  const p=vid.play();if(p&&p.catch)p.catch(()=>{vid.muted=true;vid.play().catch(()=>{})});
   sndLabel();
 }
 vid.addEventListener("timeupdate",()=>{if(vid.duration)$("bar").style.width=(vid.currentTime/vid.duration*100)+"%"});
@@ -488,8 +576,11 @@ vid.addEventListener("ended",()=>{vid.parentElement.classList.add("done");$("bar
 vid.addEventListener("volumechange",sndLabel);
 $("snd").onclick=()=>{vid.muted=!vid.muted;if(vid.paused)vid.play().catch(()=>{});sndLabel()};
 $("rep").onclick=()=>{vid.muted=false;playFilm()};
-/* pause when scrolled away, resume when back if it had not finished */
-new IntersectionObserver(es=>{const e=es[0];if(!e.isIntersecting&&!vid.paused)vid.pause();else if(e.isIntersecting&&vid.paused&&vid.currentTime>0&&!vid.ended&&gate.classList.contains("gone"))vid.play().catch(()=>{})},{threshold:.4}).observe($("vid").parentElement);
+new IntersectionObserver(es=>{const e=es[0];if(!e.isIntersecting&&!vid.paused)vid.pause();else if(e.isIntersecting&&vid.paused&&vid.currentTime>0&&!vid.ended&&gate.classList.contains("gone"))vid.play().catch(()=>{})},{threshold:.4}).observe(vid.parentElement);
+
+gate.addEventListener("click",e=>{const b=e.target.closest("[data-g]");if(!b)return;
+  if(b.dataset.g==="mine")formMine();else if(b.dataset.g==="gift")formGift();
+  else{const st=$("gStamp"),my=gen;if(live())G.to(st,{y:-innerHeight,rotate:20,duration:.9,ease:"power3.in"});setTimeout(()=>{if(my===gen)dissolve(null)},live()?300:0)}});
 
 /* ---------- the plates ---------- */
 function arrive(pg){
@@ -512,34 +603,45 @@ if(!RM)addEventListener("scroll",()=>{if(!tick){tick=true;requestAnimationFrame(
 function render(){
   const k=$("keep");let body="";
   if(S.status==="claimed"){
-    body=`<p class="t" style="color:var(--mute)">The stamp page</p><h2>Kyoto to <i>${esc(S.country)}</i></h2>${stampHTML("kStamp")}
-    <div class="rec"><div><span class="t">Keeper</span><span>${esc(S.keeper)}</span></div><div><span class="t">Country</span><span>${esc(S.country)}</span></div><div><span class="t">Since</span><span>${esc(S.since)}</span></div><div><span class="t">Pair</span><span>7 of 17</span></div><div><span class="t">Token</span><span>To be issued</span></div></div>
-    <div class="svc"><button data-svc="repair">Send it back to the workshop for care<span>&rarr;</span></button><button data-svc="again">Ask Iwai Senkou for another piece<span>&rarr;</span></button></div>`;
+    body=`<p class="t" style="color:var(--mute)" data-t="stampPage"></p><h2 data-t="claimedTitle" data-v="${V({c:cname(S.cc)})}"></h2>${stampHTML("kStamp")}
+    <div class="rec"><div><span class="t" data-t="keeper"></span><span>${esc(S.keeper)}</span></div><div><span class="t" data-t="countryL"></span><span>${esc(cname(S.cc))}</span></div><div><span class="t" data-t="since"></span><span>${esc(fmt(S.since))}</span></div><div><span class="t" data-t="pairL"></span><span data-t="editionV"></span></div><div><span class="t" data-t="token"></span><span data-t="tokenV"></span></div></div>
+    <div class="svc"><button data-svc="repair"><span data-t="repair"></span><span>&rarr;</span></button><button data-svc="again"><span data-t="again"></span><span>&rarr;</span></button></div>`;
   }else if(S.status==="gift"){
-    body=`<p class="t" style="color:var(--mute)">The stamp page</p><h2>Sealed, <i>and on its way</i></h2><p class="p" style="color:var(--mute);max-width:30ch;margin:0 auto">${esc(S.gift.to||"They")} will open your letter with one tap, then stamp it with their own name and country.</p><div class="slot t">Waiting for ${esc(S.gift.to||"them")}</div>`;
+    body=`<p class="t" style="color:var(--mute)" data-t="stampPage"></p><h2 data-t="giftPageTitle"></h2><p class="p" style="color:var(--mute);max-width:30ch;margin:0 auto" data-t="giftPageP" data-v="${V({to:S.gift.to||"—"})}"></p><div class="slot t" data-t="waiting" data-v="${V({to:S.gift.to||"—"})}"></div>`;
   }else{
-    body=`<p class="t" style="color:var(--mute)">The stamp page</p><h2>Yours, or <i>someone else's?</i></h2><p class="p" style="color:var(--mute);max-width:28ch;margin:0 auto">A name and a country are stamped onto this pair. Nothing to buy here.</p><div class="slot t">Entry stamp here</div><div class="btns"><button class="b" data-act="mine">It's mine</button><button class="b ghost" data-act="gift">It's a gift</button></div>`;
+    body=`<p class="t" style="color:var(--mute)" data-t="stampPage"></p><h2 data-t="unclTitle"></h2><p class="p" style="color:var(--mute);max-width:28ch;margin:0 auto" data-t="unclP"></p><div class="slot t" data-t="slot"></div><div class="btns"><button class="b" data-act="mine" data-t="mine"></button><button class="b ghost" data-act="gift" data-t="gift"></button></div>`;
   }
   k.innerHTML=`<p class="num t">06</p><div class="frame">${body}</div>`;
+  applyLang(k);
   const ks=$("kStamp");if(ks){bindFlip(ks);stampPm(ks,false)}
 }
-function noteSheet(h,p){const n=$("ns");n.innerHTML=`<h3>${h}</h3><p class="p">${p}</p><button class="b" id="nx">Understood</button>`;n.classList.add("on");$("nx").onclick=()=>n.classList.remove("on")}
+function noteSheet(h,p){const n=$("ns");n.innerHTML=`<h3 data-t="${h}"></h3><p class="p" data-t="${p}"></p><button class="b" id="nx" data-t="understood"></button>`;applyLang(n);n.classList.add("on");$("nx").onclick=()=>n.classList.remove("on")}
+
+/* language switch: swaps every word in place, keeps what was typed */
+document.querySelectorAll("#lang button").forEach(b=>b.onclick=()=>{
+  L=b.dataset.lang;try{localStorage.setItem("kk-lang",L)}catch(e){}
+  applyLang();
+  const kv=document.querySelectorAll(".kv");kv.forEach(e=>{if(S.status==="claimed")e.textContent=S.keeper+", "+cname(S.cc)});
+  if(gate.classList.contains("gone"))render();
+  const sel=$("co");if(sel){const cur=sel.value;[...sel.options].forEach(o=>{if(o.value)o.textContent=cname(o.value)})}
+});
 
 document.addEventListener("click",e=>{
   const a=e.target.closest("[data-act],[data-svc],[data-demo]");if(!a)return;
   const v=a.dataset.act||a.dataset.svc||a.dataset.demo;
-  if(a.dataset.act){gate.classList.remove("gone");window.scrollTo({top:0});gateFirst();a.dataset.act==="mine"?formMine():formGift()}
-  else if(v==="repair")noteSheet("Care at <i>the workshop</i>","A worn strap can go back to the hands that dyed it. This opens once Iwai Senkou agrees to take repairs.");
-  else if(v==="again")noteSheet("Another piece <i>by the same hands</i>","A request goes straight to the workshop, so the next commission pays the maker. This opens once Iwai Senkou agrees.");
-  else{window.scrollTo({top:0});$("chip").classList.remove("on");gate.classList.remove("gone");
+  if(a.dataset.act){window.scrollTo({top:0});gateFirst();a.dataset.act==="mine"?formMine():formGift()}
+  else if(v==="repair")noteSheet("repairH","repairB");
+  else if(v==="again")noteSheet("againH","againB");
+  else{window.scrollTo({top:0});$("chip").classList.remove("on");vid.pause();
     if(v==="reset"){S=blank();save();gateFirst()}
-    else if(v==="gift"){S=blank();S.status="gift";S.pmDate=short();S.gift={to:"Aiko",msg:"I walked past this shop in Kyoto and thought of you.\nSomeone dyed this by hand, one board at a time.\nWear it everywhere.",from:"Rafa"};save();gateRecipient(false)}
-    else if(v==="owner"){if(S.status!=="claimed"){S=blank();S.status="claimed";S.keeper="Rafa";S.country="Colombia";S.since=today();S.pmDate=short();save()}gateOwner()}
+    else if(v==="gift"){S=blank();S.status="gift";S.pmDate=short();S.gift={to:L==="ja"?"愛子":"Aiko",msg:t("demoMsg"),from:"Rafa"};save();gateRecipient(false)}
+    else if(v==="owner"){if(S.status!=="claimed"){S=blank();S.status="claimed";S.keeper="Rafa";S.cc="CO";S.since=new Date().toISOString();S.pmDate=short();save()}gateOwner()}
     render()}
 });
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("view").classList.remove("on");$("ns").classList.remove("on")}});
 
 /* start at the right door */
+applyLang();
 render();
 if(S.status==="claimed")gateOwner();else if(S.status==="gift")gateRecipient(false);else gateFirst();
 document.querySelectorAll("[data-pg]").forEach(p=>io.observe(p));drift();
