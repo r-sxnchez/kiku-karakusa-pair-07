@@ -9,7 +9,32 @@
 <link rel="preload" href="fonts/yuji-syuku.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="img/stamp.webp" as="image">
 <link rel="preload" href="img/poster.webp" as="image">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');
+/* On a laptop, show the site inside a phone-sized frame so it looks exactly as it does on a phone. ?full=1 skips the frame. */
+if(/[?&]frame=1/.test(location.search))document.documentElement.classList.add("framed");
+(function(){
+  var q=location.search;
+  if(window.top!==window||/[?&]full=1/.test(q)||!matchMedia("(min-width:700px) and (hover:hover) and (pointer:fine)").matches)return;
+  window.__DESK=true;document.documentElement.classList.add("desk");
+  var src=location.pathname+(q?q+"&":"?")+"frame=1"+location.hash;
+  document.addEventListener("DOMContentLoaded",function(){
+    var f=document.createElement("div");f.id="pf";
+    f.innerHTML='<div class="pf-ph"><iframe title="Kiku Karakusa, craft passport" allow="autoplay; fullscreen" src="'+src.replace(/"/g,"&quot;")+'"></iframe></div><p class="pf-cap">Phone view &middot; <a href="'+(location.pathname+(q?q+"&":"?")+"full=1").replace(/"/g,"&quot;")+'">open full screen</a></p>';
+    document.body.appendChild(f);
+    var ph=f.firstChild,fit=function(){var k=Math.min(1,(innerHeight-70)/868,(innerWidth-40)/414);ph.style.transform="scale("+k+")";f.style.setProperty("--k",k)};
+    fit();addEventListener("resize",fit);
+  });
+})();</script>
+<style>
+html.desk,html.desk body{height:100%;overflow:hidden;scroll-snap-type:none;background:#0e0d0b}
+html.desk body>*:not(#pf){display:none!important}
+#pf{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(120% 90% at 50% 40%,#2a2620 0%,#0e0d0b 70%)}
+#pf .pf-ph{position:relative;width:414px;height:868px;flex:none;border-radius:58px;background:#050505;padding:12px;box-shadow:0 0 0 2px #2b2925,0 40px 90px rgba(0,0,0,.65),inset 0 0 0 1px #3a3732;transform-origin:center center;margin:calc((868px * var(--k,1) - 868px)/2) 0}
+#pf iframe{display:block;width:390px;height:844px;border:0;border-radius:46px;background:#16140f}
+html.framed{scrollbar-width:none}html.framed::-webkit-scrollbar,html.framed body::-webkit-scrollbar{display:none;width:0;height:0}
+#pf .pf-cap{margin:18px 0 0;font:500 11px/1 "Zen Kaku Gothic New",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8a8277}
+#pf .pf-cap a{color:#cfc6b8}
+</style>
 <style>
 /* VOICE: a Kyoto print shop. Confident, few words, set with care.
    IDEA: a passport for one pair. The tap opens at a border desk: a stamp, a question, and an entry stamp with the owner's name and country.
@@ -394,6 +419,8 @@ html.js .rv{opacity:0}
 <script src="lib/gsap.min.js"></script>
 <script src="lib/SplitText.min.js"></script>
 <script>
+(function(){if(window.__DESK)return;
+
 {
 /* ---------- words, in two languages ---------- */
 const T={
@@ -790,6 +817,8 @@ applyLang();
 boot();
 document.querySelectorAll("[data-pg]").forEach(p=>io.observe(p));drift();
 }
+
+})();
 </script>
 </body>
 </html>
